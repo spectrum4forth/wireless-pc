@@ -1,0 +1,530 @@
+register 
+037
+000 15 0           
+000 14 0           
+000 13 0 DeviceID<5>           
+000 12 1 DeviceID<4>           
+000 11 0 DeviceID<3>          
+000 10 0 DeviceID<2>           
+000 09 0 DeviceID<1>           
+000 08 0 DeviceID<0>           
+000 07 0 SDO_ACTIVE 
+000 06 0 ADDR_ASCENSION
+000 05 0 LSB_FIRST 
+000 04 0 SOFT_RESET 
+000 03 0 SDO_ACTIVE 
+000 02 0 ADDR_ASCENSION 
+000 01 0 LSB_FIRST 
+000 00 0 SOFT_RESET 
+016 15 0           
+016 14 0           
+016 13 0 DeviceID<5>          
+016 12 1 DeviceID<4>          
+016 11 0 DeviceID<3>            
+016 10 0 DeviceID<2>             
+016 09 0 DeviceID<1>             
+016 08 0 DeviceID<0>             
+016 07 0  INT<07>
+016 06 0  INT<06>
+016 05 1  INT<05>  
+016 04 0  INT<04>  
+016 03 1  INT<03>
+016 02 0  INT<02>
+016 01 0  INT<01>
+016 00 1  INT<00>
+017 15 0           
+017 14 0           
+017 13 0 DeviceID<5>          
+017 12 1 DeviceID<4>          
+017 11 0 DeviceID<3>            
+017 10 0 DeviceID<2>             
+017 09 0 DeviceID<1>             
+017 08 0 DeviceID<0>             
+017 07 0  INT<15>
+017 06 0  INT<14>
+017 05 0  INT<13>  
+017 04 0  INT<12>  
+017 03 0  INT<11>
+017 02 0  INT<10>
+017 01 0  INT<09>
+017 00 0  INT<08>
+020 15 0           
+020 14 0           
+020 13 0 DeviceID<5>          
+020 12 1 DeviceID<4>          
+020 11 0 DeviceID<3>            
+020 10 0 DeviceID<2>             
+020 09 0 DeviceID<1>             
+020 08 0 DeviceID<0>             
+020 07 0  FRAC<07>
+020 06 0  FRAC<06>
+020 05 0  FRAC<05>  
+020 04 0  FRAC<04>  
+020 03 0  FRAC<03>
+020 02 0  FRAC<02>
+020 01 0  FRAC<01>
+020 00 0  FRAC<00>
+021 15 0           
+021 14 0           
+021 13 0 DeviceID<5>          
+021 12 1 DeviceID<4>          
+021 11 0 DeviceID<3>            
+021 10 0 DeviceID<2>             
+021 09 0 DeviceID<1>             
+021 08 0 DeviceID<0>             
+021 07 0  FRAC<15>
+021 06 0  FRAC<14>
+021 05 0  FRAC<13>  
+021 04 0  FRAC<12>  
+021 03 0  FRAC<11>
+021 02 0  FRAC<10>
+021 01 0  FRAC<09>
+021 00 0  FRAC<08>
+022 15 0           
+022 14 0           
+022 13 0 DeviceID<5>          
+022 12 1 DeviceID<4>          
+022 11 0 DeviceID<3>            
+022 10 0 DeviceID<2>             
+022 09 0 DeviceID<1>             
+022 08 0 DeviceID<0>             
+022 07 0  FRAC<23>
+022 06 0  FRAC<22>
+022 05 0  FRAC<21>
+022 04 0  FRAC<20>
+022 03 0  FRAC<19>
+022 02 0  FRAC<18>
+022 01 0  FRAC<17>
+022 00 0  FRAC<16>
+023 15 0           
+023 14 0           
+023 13 0 DeviceID<5>          
+023 12 1 DeviceID<4>          
+023 11 0 DeviceID<3>            
+023 10 0 DeviceID<2>             
+023 09 0 DeviceID<1>             
+023 08 0 DeviceID<0>             
+023 07 0  FRAC2<6>
+023 06 0  FRAC2<5>
+023 05 0  FRAC2<4>
+023 04 0  FRAC2<3>
+023 03 0  FRAC2<2>
+023 02 0  FRAC2<1>
+023 01 0  FRAC2<0>
+023 00 0  FRAC<24>
+030 15 0           
+030 14 0           
+030 13 0 DeviceID<5>          
+030 12 1 DeviceID<4>          
+030 11 0 DeviceID<3>            
+030 10 0 DeviceID<2>             
+030 09 0 DeviceID<1>             
+030 08 0 DeviceID<0>             
+030 07 0 CP_CURRENT 
+030 06 1 CP_CURRENT 
+030 05 0 CP_CURRENT 
+030 04 0 CP_CURRENT 
+030 03 1 PD_POL
+030 02 0 PD
+030 01 0 RESERVED
+030 00 0 CNTR_RESET 
+036 15 0           
+036 14 0           
+036 13 0 DeviceID<5>          
+036 12 1 DeviceID<4>          
+036 11 0 DeviceID<3>            
+036 10 0 DeviceID<2>             
+036 09 0 DeviceID<1>             
+036 08 0 DeviceID<0>             
+036 07 1  FB_SEL
+036 06 0  DIV_SEL<2>
+036 05 0  DIV_SEL<1>  
+036 04 0  DIV_SEL<0>  
+036 03 0   
+036 02 0  
+036 01 0   
+036 00 0  
+037 15 0           
+037 14 0           
+037 13 0 DeviceID<5>          
+037 12 1 DeviceID<4>          
+037 11 0 DeviceID<3>            
+037 10 0 DeviceID<2>             
+037 09 0 DeviceID<1>             
+037 08 0 DeviceID<0>             
+037 07 0 MUTE_LD 
+037 06 0  
+037 05 0 RF_DIVSEL_DB  
+037 04 0 X4_EN 
+037 03 0 X2_EN 
+037 02 1 RF_EN 
+037 01 1 RFOUT_POWER<1> 
+037 00 1 RFOUT_POWER<0>
+039 15 0           
+039 14 0           
+039 13 0 DeviceID<5>          
+039 12 1 DeviceID<4>          
+039 11 0 DeviceID<3>            
+039 10 0 DeviceID<2>             
+039 09 0 DeviceID<1>             
+039 08 0 DeviceID<0>             
+039 07 1 LD_BIAS 
+039 06 1 LD_BIAS 
+039 05 1 LDP  
+039 04 0 BLEED_GATE 
+039 03 0 BLEED_EN 
+039 02 1 VCOLDO_PD  
+039 01 0 RF_PBS  
+039 00 1 RF_PBS 
+112 15 0           
+112 14 0           
+112 13 0 DeviceID<5>          
+112 12 1 DeviceID<4>          
+112 11 0 DeviceID<3>            
+112 10 0 DeviceID<2>             
+112 09 0 DeviceID<1>             
+112 08 0 DeviceID<0>             
+112 07 0 Band_sel_x2<2>
+112 06 0 Band_sel_x2<1>
+112 05 0 Band_sel_x2<0>
+112 04 0  
+112 03 0  
+112 02 0  
+112 01 0 Bias_Sel_x2<1>
+112 00 0 Bias_Sel_x2<0>
+124 15 0           
+124 14 0           
+124 13 0 DeviceID<5>          
+124 12 1 DeviceID<4>          
+124 11 0 DeviceID<3>            
+124 10 0 DeviceID<2>             
+124 09 0 DeviceID<1>             
+124 08 0 DeviceID<0>             
+124 07 0  
+124 06 0  
+124 05 0  
+124 04 0  
+124 03 0  
+124 02 0  
+124 01 0  
+124 00 0 Lock
+037 15 0           
+037 14 0           
+037 13 0 DeviceID<5>          
+037 12 1 DeviceID<4>          
+037 11 0 DeviceID<3>            
+037 10 0 DeviceID<2>             
+037 09 0 DeviceID<1>             
+037 08 1 DeviceID<0>             
+037 07 0 MUTE_LD 
+037 06 0  
+037 05 0 RF_DIVSEL_DB  
+037 04 0 X4_EN 
+037 03 0 X2_EN 
+037 02 1 RF_EN 
+037 01 1 RFOUT_POWER<1> 
+037 00 1 RFOUT_POWER<0>
+128 15 0           
+128 14 0           
+128 13 0 DeviceID<5>          
+128 12 0 DeviceID<4>          
+128 11 0 DeviceID<3>           
+128 10 0 DeviceID<2>            
+128 09 0 DeviceID<1>            
+128 08 0 DeviceID<0>            
+128 07 0 ATT00<7>
+128 06 0 ATT00<6>
+128 05 0 ATT00<5>
+128 04 0 ATT00<4>
+128 03 0 ATT00<3>
+128 02 0 ATT00<2>
+128 01 0 ATT00<1>
+128 00 0 ATT00<0>
+129 15 0           
+129 14 0           
+129 13 0 DeviceID<5>          
+129 12 0 DeviceID<4>          
+129 11 0 DeviceID<3>            
+129 10 0 DeviceID<2>            
+129 09 0 DeviceID<1>            
+129 08 0 DeviceID<0>            
+129 07 0 ATT01<7>
+129 06 0 ATT01<6>
+129 05 0 ATT01<5>
+129 04 0 ATT01<4>
+129 03 0 ATT01<3>
+129 02 0 ATT01<2>
+129 01 0 ATT01<1>
+129 00 0 ATT01<0>
+130 15 0           
+130 14 0           
+130 13 0 DeviceID<5>          
+130 12 0 DeviceID<4>          
+130 11 0 DeviceID<3>            
+130 10 0 DeviceID<2>            
+130 09 0 DeviceID<1>            
+130 08 0 DeviceID<0>            
+130 07 0 ATT02<7>
+130 06 0 ATT02<6>
+130 05 0 ATT02<5>
+130 04 0 ATT02<4>
+130 03 0 ATT02<3>
+130 02 0 ATT02<2>
+130 01 0 ATT02<1>
+130 00 0 ATT02<0>
+132 15 0           
+132 14 0           
+132 13 0 DeviceID<5>          
+132 12 0 DeviceID<4>          
+132 11 0 DeviceID<3>            
+132 10 0 DeviceID<2>            
+132 09 0 DeviceID<1>            
+132 08 0 DeviceID<0>            
+132 07 0 ATT04_out<7>
+132 06 0 ATT04_out<6>
+132 05 0 ATT04_out<5>
+132 04 0 ATT04_out<4>
+132 03 0 ATT04_out<3>
+132 02 0 ATT04_out<2>
+132 01 0 ATT04_out<1>
+132 00 0 ATT04_out<0>
+133 15 0           
+133 14 0           
+133 13 0 DeviceID<5>          
+133 12 0 DeviceID<4>          
+133 11 0 DeviceID<3>            
+133 10 0 DeviceID<2>            
+133 09 0 DeviceID<1>            
+133 08 0 DeviceID<0>            
+133 07 0 ATT05<7>
+133 06 0 ATT05<6>
+133 05 0 ATT05<5>
+133 04 0 ATT05<4>
+133 03 0 ATT05<3>
+133 02 0 ATT05<2>
+133 01 0 ATT05<1>
+133 00 0 ATT05<0>
+135 15 0           
+135 14 0           
+135 13 0 DeviceID<5>          
+135 12 0 DeviceID<4>          
+135 11 0 DeviceID<3>            
+135 10 0 DeviceID<2>            
+135 09 0 DeviceID<1>            
+135 08 0 DeviceID<0>            
+135 07 0 ATT07<7>
+135 06 0 ATT07<6>
+135 05 0 ATT07<5>
+135 04 0 ATT07<4>
+135 03 0 ATT07<3>
+135 02 0 ATT07<2>
+135 01 0 ATT07<1>
+135 00 0 ATT07<0>
+138 15 0           
+138 14 0           
+138 13 0 DeviceID<5>          
+138 12 0 DeviceID<4>          
+138 11 0 DeviceID<3>            
+138 10 0 DeviceID<2>            
+138 09 0 DeviceID<1>            
+138 08 0 DeviceID<0>            
+138 07 0
+138 06 0 
+138 05 0 
+138 04 1 RXSW1 Band1-7/0
+138 03 0 
+138 02 0 
+138 01 1 TXSW2:TX/TRX
+138 00 1 TXSW1 Band1-7/0
+139 15 0           
+139 14 0           
+139 13 0 DeviceID<5>          
+139 12 0 DeviceID<4>          
+139 11 0 DeviceID<3>            
+139 10 0 DeviceID<2>            
+139 09 0 DeviceID<1>            
+139 08 0 DeviceID<0>            
+139 07 0 V24
+139 06 1 V23
+139 05 1 V22
+139 04 1 V21
+139 03 0 V14
+139 02 0 V13
+139 01 0 V12
+139 00 0 V11
+140 15 0           
+140 14 0           
+140 13 0 DeviceID<5>          
+140 12 0 DeviceID<4>          
+140 11 0 DeviceID<3>           
+140 10 0 DeviceID<2>           
+140 09 0 DeviceID<1>           
+140 08 0 DeviceID<0>           
+140 07 0 V44
+140 06 0 V43
+140 05 0 V42
+140 04 0 V41
+140 03 0 V34
+140 02 1 V33
+140 01 1 V32
+140 00 1 V31
+141 15 0           
+141 14 0           
+141 13 0 DeviceID<5>          
+141 12 1 DeviceID<4>          
+141 11 0 DeviceID<3>            
+141 10 0 DeviceID<2>            
+141 09 1 DeviceID<1>            
+141 08 0 DeviceID<0>            
+141 07 0 REF_SEL VT/PLL
+141 06 0 
+141 05 0 
+141 04 0 DAC4
+141 03 1 DAC3
+141 02 1 DAC2
+141 01 1 DAC1
+141 00 1 DAC0
+144 15 0           
+144 14 0           
+144 13 1 DeviceID<5>          
+144 12 0 DeviceID<4>            
+144 11 0 DeviceID<3>            
+144 10 0 DeviceID<2>            
+144 09 0 DeviceID<1>            
+144 08 0 DeviceID<0>            
+144 07 0 R<6>
+144 06 0 R<5>
+144 05 0 R<4>
+144 04 0 R<3>
+144 03 0 R<2>
+144 02 1 R<1>
+144 01 0 C2
+144 00 0 C1
+145 15 0           
+145 14 0           
+145 13 1 DeviceID<5>          
+145 12 0 DeviceID<4>            
+145 11 0 DeviceID<3>            
+145 10 0 DeviceID<2>            
+145 09 0 DeviceID<1>            
+145 08 0 DeviceID<0>            
+145 07 0 R<14>
+145 06 0 R<13>
+145 05 0 R<12>
+145 04 0 R<11>
+145 03 0 R<10>
+145 02 0 R<9>
+145 01 0 R<8>
+145 00 1 R<7>
+146 15 0           
+146 14 0          
+146 13 1 DeviceID<5>          
+146 12 0 DeviceID<4>            
+146 11 0 DeviceID<3>            
+146 10 0 DeviceID<2>            
+146 09 0 DeviceID<1>            
+146 08 0 DeviceID<0>            
+146 07 0 X
+146 06 0 0
+146 05 0 0
+146 04 0 LDP
+146 03 0 T2
+146 02 0 T1
+146 01 0 ABP2
+146 00 0 ABP1
+147 15 0           
+147 14 0           
+147 13 1 DeviceID<5>          
+147 12 0 DeviceID<4>           
+147 11 0 DeviceID<3>            
+147 10 0 DeviceID<2>            
+147 09 0 DeviceID<1>            
+147 08 0 DeviceID<0>            
+147 07 0 X
+147 06 0 X
+147 05 0 X
+147 04 0 X
+147 03 0 X
+147 02 0 X
+147 01 0 C2
+147 00 1 C1
+148 15 0           
+148 14 0           
+148 13 1 DeviceID<5>           
+148 12 0 DeviceID<4>            
+148 11 0 DeviceID<3>            
+148 10 0 DeviceID<2>            
+148 09 0 DeviceID<1>            
+148 08 0 DeviceID<0>            
+148 07 0 B<8>
+148 06 0 B<7>
+148 05 0 B<6>
+148 04 0 B<5>
+148 03 1 B<4>
+148 02 0 B<3>
+148 01 1 B<2>
+148 00 0 B<1>
+149 15 0           
+149 14 0           
+149 13 1 DeviceID<5>            
+149 12 0 DeviceID<4>             
+149 11 0 DeviceID<3>             
+149 10 0 DeviceID<2>             
+149 09 0 DeviceID<1>             
+149 08 0 DeviceID<0>             
+149 07 0 X
+149 06 0 X
+149 05 0 g1
+149 04 0 B<13>
+149 03 0 B<12>
+149 02 0 B<11>
+149 01 0 B<10>
+149 00 0 B<9>
+150 15 0           
+150 14 0           
+150 13 1 DeviceID<5>            
+150 12 0 DeviceID<4>             
+150 11 0 DeviceID<3>             
+150 10 0 DeviceID<2>             
+150 09 0 DeviceID<1>             
+150 08 0 DeviceID<0>             
+150 07 1 F2
+150 06 0 M3
+150 05 0 M2
+150 04 1 M1
+150 03 0 PD1
+150 02 0 F1
+150 01 1 C2
+150 00 0 C1
+151 15 0           
+151 14 0           
+151 13 1 DeviceID<5>           
+151 12 0 DeviceID<4>            
+151 11 0 DeviceID<3>            
+151 10 0 DeviceID<2>            
+151 09 0 DeviceID<1>            
+151 08 0 DeviceID<0>            
+151 07 0 CPI<1>
+151 06 1 TC<4>
+151 05 1 TC<3>
+151 04 1 TC<2>
+151 03 1 TC<1>
+151 02 0 F5
+151 01 0 F4
+151 00 0 F3 
+152 15 0           
+152 14 0           
+152 13 1 DeviceID<5>            
+152 12 0 DeviceID<4>             
+152 11 0 DeviceID<3>             
+152 10 0 DeviceID<2>             
+152 09 0 DeviceID<1>             
+152 08 0 DeviceID<0>             
+152 07 0 X
+152 06 0 X
+152 05 0 PD2
+152 04 1 CPI<6>
+152 03 0 CPI<5>
+152 02 0 CPI<4>
+152 01 1 CPI<3>
+152 00 0 CPI<2>

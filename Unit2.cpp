@@ -1,0 +1,1476 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+//#include "StdAfx.h"
+#include <stdio.h>
+#include <windows.h>
+#include <winbase.h>
+#include <iostream>
+#include <tchar.h>
+#include "UART.h"
+#include <string>
+
+//void openport(void);
+using namespace std;
+#include "Unit2.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+
+
+
+TForm1 *Form1;
+
+//---------------------------------------------------------------------------
+//HANDLE m_hCommPort;
+//DCB config = {0};
+//    int com=1;
+//    char output[2];
+//    bool abContinue = true;
+//    int isRead = false;
+//    int addr,bit;
+//    int addrbit[16];
+unsigned char tx_band=7, rx_band=7;
+unsigned int number_reg=300,data=0;
+unsigned char reg8a[4] = {0x13, 0x13, 0x13, 0x13} ;
+unsigned int reg[1024][16],reg_id[300];;
+char register_name[1024][16][25];
+unsigned int flo=9700, flo_rx =9400, fstep=5, fref=100;
+unsigned int pll_tx_i_updown =0, pll_rx_i_updown = 0;
+unsigned int db[16]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+float RFfreqT[8] ={0.4,2.4,3.4,4.0,4.6,5.6,6.6,7.3};
+float RFfreqR[8] ={0.4,2.2,3.4,4.0,4.6,5.6,6.6,7.3};
+float LOfreqT[8] ={0.0,4.4,5.6,6.4,7.0,8.0,9.0,9.3};
+float LOfreqR[8] ={0.0,3.6,5.2,6.0,6.6,7.6,8.6,9.3};
+BYTE read_data[]={0,0,0,0,0,0,0};
+/*
+Band1: 0.4---2.4G
+Band2: 2.2---3.0G
+Band3: 3.0---3.8G
+Band4: 3.8---4.6G
+Band5: 4.6---5.4G
+Band6: 5.4---6.2G
+Band7: 6.2---7.0G
+*/
+
+
+//                         0    1    2    3    4    5    6    7    8    9    10   11   12   13   14   15   16   17   18   19   20   21   22   23   24   25   26   27   28   29   30   31   32   33   34   35   36   37   38
+unsigned char ad[39] = { 0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x1A,0x1B,0x1C,0x1D,0x1F,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A,0x2C,0x2D,0x2E,0x2F,0x31,0x32,0x33,0x34,0x3A,0x3B,0x3D,0x42,0x45} ;
+unsigned char dd[39] = { 0x61,0x80,0x01,0x0f,0x00,0x0f,0x00,0x00,0x80,0x30,0x01,0xa6,0xc1,0x10,0xe7,0x09,0xd3,0x32,0x98,0x00,0x16,0x2f,0x10,0x27,0xc4,0x09,0xc0,0x1f,0x83,0x01,0x09,0x09,0x18,0x08,0x5d,0x2b,0x00,0x05,0x01} ;
+unsigned char pll_total =39;
+
+unsigned char pll_on_off = 0x00 ; //D1:PLL_RX on/off; D0:PLL_TX on/off
+unsigned char ref_data = 0xd0 ; //REF_SEL, EN_OCXO, 0, VTUNE[4:0] ;  DAC
+unsigned int ref_freq[3] ={100, 50, 10};
+unsigned char att0[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} ;
+unsigned  att1[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} ;
+//unsigned char att2[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} ;
+//unsigned char att3[10] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} ;
+AnsiString power[8] = {"20.0", "23.0", "24.0", "29.0", "32.0", "33.0", "34.5", "35.0" } ;
+//unsigned char spdt[4] = {0x03, 0x03, 0x03, 0x03 } ;   //txsw1=0(band1-7), txsw2=1(TX).rxsw1=0(band1-7)
+//unsigned char sp4t1[8] = {0x30, 0x07, 0x43, 0x25, 0x61, 0x16, 0x52, 0x34}; //tx
+//unsigned char sp4t2[8] = {0x37, 0x03, 0x45, 0x21, 0x66, 0x12, 0x54, 0x30}; //rx
+//unsigned char sp4t2[8] = {0x07, 0x16, 0x21, 0x66, 0x22, 0x54, 0x65, 0x76}; //rx
+float freq_tx = 5900, freq_rx = 5900;
+
+AnsiString regname[1024][16];;
+unsigned int addr,bit;
+unsigned char add_test=0;
+unsigned char slaveaddress;
+FILE *stream;
+char dataBuffer[60];
+bool timer_on=false,lock1,lock2,lock3,PortisOpen=true, vio=False;
+    TButton    *button_tmp;
+    TLabel     *label_tmp;
+    TGroupBox  *groupbox_tmp;
+
+    String  temp;
+
+
+UART *pUART=new UART;
+
+
+//////////Start of Prgramm ///////////////////////////
+String IntToBin(long int Value, int Size){
+
+    String Result = "";
+
+    for(int i = Size - 1; i >= 0; i--){
+        Result += ((Value & (1 << i)) != 0) ? '1' : '0';
+        db[i]= ((Value & (1 << i)) != 0) ? 1 : 0;
+    }
+    return Result.c_str();
+}
+/* -------------------------------------------------------------------------- */
+
+
+void DecToBin(long int Value,int Size){
+
+    for(int i = Size - 1; i >= 0; i--){
+        db[i]= ((Value & (1 << i)) != 0) ? 1 : 0;
+    }
+ }
+/* -------------------------------------------------------------------------- */
+//this is for return two parameters
+void floatAddTwo(float& nxx, float& nyy)
+{
+	nxx = 22;
+	nyy = 222;
+	return;
+}
+
+long int BinToInt(PCHAR Value){
+
+    long int Result = 0;
+
+    for(int i = strlen(Value) - 1; i >= 0; i--){
+        if(*(Value + strlen(Value) - 1 - i) == '1'){
+            Result += (1 << i);
+        }
+    }
+
+    return Result;
+}
+
+unsigned int bin2dec(unsigned int address,unsigned int msb,unsigned int lsb)
+{
+    unsigned int i,x;
+    x=0;
+    for (i=(msb+1);i>lsb;i--) {
+     x+=(reg[address][i-1]<<(i-1));
+    }
+
+    return x;
+    }
+
+
+unsigned char HexToInt (char ch)
+{
+    if (ch >= '0' && ch <= '9') return (ch - '0');        // Handle numerals
+    if (ch >= 'A' && ch <= 'F') return (ch - 'A' + 0xA);  // Handle capitol hex digits
+    if (ch >= 'a' && ch <= 'f') return (ch - 'a' + 0xA);  // Handle small hex digits
+    return(0);
+
+}
+
+int readdata(void)
+{
+   int h1,h2,h3,h4;
+   h2=0;
+   h1=0;
+   do {
+       h1++;
+       h3=dataBuffer[h1];
+       h4=dataBuffer[h1+1];
+      } while ((h3!=39 | h4!=104 ) & h1<35) ;
+
+   if(dataBuffer[h1+3]==32)
+     h2=HexToInt(dataBuffer[h1+2]);
+   else if(dataBuffer[h1+4]==32)
+     h2=HexToInt(dataBuffer[h1+2])*16+HexToInt(dataBuffer[h1+3]) ;
+   else if(dataBuffer[h1+5]==32)
+     h2=HexToInt(dataBuffer[h1+2])*256+HexToInt(dataBuffer[h1+3])*16+HexToInt(dataBuffer[h1+4]) ;
+   else if(dataBuffer[h1+6]==32)
+     h2=HexToInt(dataBuffer[h1+2])*4096+HexToInt(dataBuffer[h1+3])*256+HexToInt(dataBuffer[h1+4])*16+HexToInt(dataBuffer[h1+5]) ;
+   return h2;
+}
+
+//-------------------------------------------------------------------------
+
+void __fastcall TForm1::SendAllClick(TObject *Sender)
+{
+  SendAll->Enabled=false;
+  ProgressBar1->Visible =true ;
+
+  unsigned int data;
+  unsigned char addr,id;
+
+//   for (addr=0;addr<30;addr++)
+   for (addr=0;addr<number_reg;addr++)
+    {
+       id=reg_id[addr]  ;
+       data=bin2dec(id,15,0);
+
+       if (id!=129) pUART->register_write(id | 0x8200,data);
+       else  pUART->register_write(id | 0x8000,data);
+       Sleep(40);
+       ProgressBar1->Position=100*addr/number_reg;
+       Edit3->Text= "Register"+ IntToStr(id) ;//+ "  0x"+IntToHex(data);
+       Edit3->Update();
+    }
+   SendAll->Enabled=true;
+   ProgressBar1->Visible =false ;
+}
+//---------------------------------------------------------------------------
+
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+
+   char port=0;
+   char buffer[3];
+   boolean loop1=false;
+   AnsiString outd="";
+   port = 2 ;
+   while (port <20  & !loop1)
+      {
+          port++;
+          loop1=pUART->Openport(port) ;
+
+      }
+    Edit4->Text =itoa(port,buffer,10);
+    PortisOpen=loop1;
+    ComboBox11->ItemIndex = port ;
+    if(PortisOpen) {
+       Edit4->Color=clGreen;
+       ComboBox11->Color=clGreen ;
+
+     }
+    else {
+          Edit4->Color=clRed;
+         ComboBox11->Color=clRed ;
+
+         }
+  unsigned int addr,bit,id;
+  char *p;
+  AnsiString temp;
+
+   flo =  (Edit5->Text.ToDouble())   ;
+   flo_rx =  (Edit6->Text.ToDouble())   ;
+
+   SendAll->Enabled=false;
+   ReadAll->Enabled=false;
+   char str1[16], str2[8];
+
+  stream=fopen("register.txt", "r");
+  if (stream!=NULL)
+    {
+        fgets(dataBuffer, sizeof(dataBuffer), stream);
+        if(strcmp(dataBuffer,"register")>0)
+        {
+            // at this version we set the max register to be 255
+             fgets(dataBuffer, sizeof(dataBuffer), stream);
+             number_reg=StrToInt(dataBuffer[0])*100+StrToInt(dataBuffer[1])*10+StrToInt(dataBuffer[2]);
+//             number_reg=StrToInt(dataBuffer[1])*10+StrToInt(dataBuffer[1]);
+             for (addr=0;addr<number_reg;addr++)
+              {
+                for (bit=16;bit>0;bit--)
+                 {
+
+                   fgets(dataBuffer, sizeof(dataBuffer), stream);
+                   id=100*StrToInt(dataBuffer[0])+10*StrToInt(dataBuffer[1])+StrToInt(dataBuffer[2]);
+                   reg_id[addr]=id;
+//                   reg[id][bit]=StrToInt(dataBuffer[6]);     //[01]=address, [2]=space;[3]=bit;[4]=space;[5]=data
+                   reg[id][bit-1]=(StrToInt(dataBuffer[7])==1)?1:0;     //[01]=address, [2]=space;[3]=bit;[4]=space;[5]=data
+                   p = strtok(&(dataBuffer[9]), "\n" );
+//                   register_name[id][bit-1] = p[0];
+//                   strncpy(register_name[id][bit-1], &(p[0]),29);      //i1-4
+//                   outd=register_name[id][bit-1];
+
+//                   memcpy(register_name[id][bit-1], &(p[0]),StrLen(p));      //i1-4
+
+                   regname[id][bit-1]=p;
+//                   regname[id][bit-1]=register_name[id][bit-1];
+//                   outd=              register_name[id][bit-1];
+                   temp="button";
+                   temp=temp+IntToStr((addr)*16+16-bit+1);
+                   button_tmp = (TButton *)(FindComponent(temp));
+                   button_tmp->Caption=reg[id][bit-1];
+
+                   temp="label";
+                   temp=temp+IntToStr((addr)*16+16-bit+1);
+                   label_tmp = (TLabel *)(FindComponent(temp));
+                   label_tmp->Caption=regname[id][bit-1];
+                 }
+                   temp="GroupBox";
+                   temp=temp+IntToStr(addr+1);
+                   groupbox_tmp = (TGroupBox *)(FindComponent(temp));
+                   int xxxx=id;
+                   int yy0= bin2dec(id,7,0);
+//                   groupbox_tmp->Caption="Read Reg"+IntToHex(id,2)+"  0x"+IntToHex(yy0,4);
+                   groupbox_tmp->Caption="Read Reg0x"+IntToHex(xxxx,2)+"  "+"0x"+IntToHex(yy0,2);
+                   groupbox_tmp->Visible  =true;
+                   data=bin2dec(id,15,0);
+
+                    ProgressBar1->Position=100*addr/number_reg;
+                    SendAll->Enabled=true;
+                    ProgressBar1->Visible =false ;
+               //    pUART->register_write(id,data);
+               }
+                    SendAll->Enabled=true;
+                    ReadAll->Enabled=true;
+                    ProgressBar1->Visible =false ;
+
+        }
+        else
+        {
+                ShowMessage ("NO 'register' exist");
+         }
+        fclose(stream);
+     }
+
+     else
+        {
+
+      stream=fopen("register.txt", "w");
+      AnsiString addrc="register";
+      fprintf(stream, "%s \n", addrc);
+      fprintf(stream, "85 \n");
+                 // at this version we set the max register to be 255 /
+                for (addr=0;addr<number_reg;addr++)
+                  {
+                   id=addr;
+                   for (bit=0;bit<8;bit++)
+                     {
+
+                        if(id<10) addrc="0"+IntToStr(id);
+                         else if(addr<10) addrc="0"+IntToStr(id);
+                           else  addrc=IntToStr(id);
+
+                       fprintf(stream, "%s %d %i \n", addrc, bit, reg[id][bit]);
+                     }
+                   }
+                 fclose(stream);
+        }
+    slaveaddress = bin2dec(0,12,8)>>8 ;
+    //slaveaddress = reg[0][11]*8 + reg[0][10]*4 + reg[0][9]*2 + reg[0][8];
+    //int tt =bin2dec(0,7,0);
+    Edit2->Text="Register 0x00" ;// + "  0x00" ; //+IntToHex(tt,2);
+    Edit3->Text="Register 0x00" ;// + "  0x00" ; //+IntToHex(tt,2);
+
+    Edit5->Text = IntToStr(bin2dec(165,7,0)) ;
+    Edit12->Text = IntToStr(bin2dec(166,7,0)) ;
+    Edit13->Text = IntToStr(bin2dec(167,7,0)) ;
+    Edit14->Text = IntToStr(bin2dec(168,7,0)) ;
+    UpDown1->Position =  bin2dec(165,7,0)  ;
+    UpDown2->Position =  bin2dec(166,7,0)  ;
+    UpDown3->Position =  bin2dec(167,7,0)  ;
+    UpDown4->Position =  bin2dec(168,7,0) ;
+    att0[0] = bin2dec(256+6,2,0)  ;
+    att0[1] = bin2dec(256+6,2,0)  ;
+    att0[2] = bin2dec(256+6,2,0)  ;
+    att0[3] = bin2dec(256+6,2,0)  ;
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+     //((TButton *)Sender)->Caption="K";
+
+
+    TButton *button_tmp;
+    String temp;
+    int data,addr,bit,id;
+    for(unsigned int i=1;i<number_reg*16;i++)
+    {
+        temp="Button";
+        temp=temp+IntToStr(i);
+        button_tmp = (TButton *)(FindComponent(temp));
+        if(temp==(((TButton *)Sender)->Name))
+        {
+          if(i<=number_reg*16)
+            {
+              addr=(i-1)/16;
+              id=reg_id[addr];
+              bit=15-(i-(addr)*16-1);
+              reg[id][bit]=!reg[id][bit];
+              button_tmp->Caption=IntToStr(reg[id][bit]);
+//              Edit2->Text="Register"+ IntToStr(id)+ "   D"+IntToStr(bit);
+              slaveaddress = bin2dec(id,15,8) >>8 ;
+              data=slaveaddress << 8  | bin2dec(id,7,0);
+              Edit2->Color =clRed;
+              id = id & 0xFF ;
+              pUART->register_write(id,data);
+              Sleep(2);
+              Edit2->Text="Reg0x"+ IntToHex(id,2)+ "  0x"+IntToHex(data & 0xff,2);
+              Edit2->Color =clLime;
+
+              //            pSPIm->spi_open();
+//            pSPIm->spi_write_addr(id,data) ;
+//            pSPIm->spi_close();
+             }
+        }
+    }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::GroupBox1Click(TObject *Sender)
+{
+    //((TButton *)Sender)->Caption="K";
+
+
+    TButton *button_tmp;
+    String temp;
+    unsigned char dddd   ;
+    TButton *group_tmp;
+    String temp_group;
+    int addr,data,id, x ;
+
+    for(int i=1;i<1024;i++)
+    {
+        temp_group="GroupBox";
+        temp_group=temp_group+IntToStr(i);
+        group_tmp = (TButton *)(FindComponent(temp_group));
+        if(temp_group==(((TButton *)Sender)->Name))
+        {
+          if(i<=1024)
+            {
+              addr=i-1;
+              id=reg_id[addr];
+              slaveaddress = bin2dec(id,15,8) >> 8 ;
+              data=(slaveaddress << 8)  | (id & 0xff) ;
+              x = pUART->register_read(data, read_data) >> 8;
+              x=read_data[3] ;
+//              Sleep(1) ;
+          //    dddd = pUART->register_read(data);
+          //    Sleep(1) ;
+          //    if((data & 0xff00) != 0x5200) {
+          //      data = pUART->register_read(data);
+          //    }
+              Edit2->Text="Reg0x"+ IntToHex(id,2)+ "  0x"+IntToHex(x,2);
+              group_tmp->Caption="Read Reg0x"+IntToHex(id, 2)+"  0x" + IntToHex(x,2);
+             }
+        }
+    }
+
+
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Save1Click(TObject *Sender)
+{
+
+
+         unsigned int addr,bit,id;
+         AnsiString addrc="register ";
+         AnsiString outc="register ";
+         AnsiString outd;
+         FILE * TOpen;
+
+  if(OpenDialog1->Execute() )
+  {
+    TOpen = fopen(OpenDialog1->FileName.c_str(), "w+");
+    if (TOpen!=NULL)
+      {
+         TOpen = fopen(OpenDialog1->FileName.c_str(), "a");
+         fprintf(TOpen, "%s \n", "register")  ;
+         fprintf(TOpen, "%d \n", number_reg)  ;
+         fclose(TOpen);
+
+         for (addr = 0 ; addr <number_reg; addr++)
+         {
+           id=reg_id[addr];
+           if(id<10) addrc="00"+IntToStr(id);
+           else if(id<100) addrc="0"+IntToStr(id);
+           else  addrc=IntToStr(id);
+
+           for (int i = 16; i>0; i--)
+           {
+             bit=i-1;
+             outd=regname[id][bit];
+             if(bit<10) outc=addrc+" 0"+IntToStr(bit)+" "+IntToStr(reg[id][bit])+" "+regname[id][bit] ;
+             else outc=addrc+" "+IntToStr(bit)+" "+IntToStr(reg[id][bit])+" "+regname[id][bit] ;
+//             if(bit<10) outc=addrc+" 0"+IntToStr(bit)+" "+IntToStr(bit)+"  "+regname[id][bit] ;
+//             else outc=addrc+" "+IntToStr(bit)+" "+IntToStr(bit-10)+"  "+regname[id][bit] ;
+
+             TOpen = fopen(OpenDialog1->FileName.c_str(), "a");
+             fprintf(TOpen, "%s \n", outc)  ;
+             fclose(TOpen);
+            }
+          }
+        }
+       }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ConvertionClick(TObject *Sender)
+{
+   FILE * TOpen;
+
+   TOpen = fopen("register.txt", "w");
+//   fprintf(TOpen, "%s \n", "register")  ;
+ //  fclose(TOpen);
+  unsigned int addr,bit,id;
+  unsigned int i0,i1,i2,i3,j1,j2,j3;
+  char v1,v2,v3;
+  AnsiString addrc="register ";
+  AnsiString outc="register ";
+
+ //------------ register name -----------------------
+    number_reg=0      ;
+    stream=fopen("middle.txt", "r");
+    if(stream!=NULL)
+     {
+
+        do {
+              for (i1=0;i1<80;i1++) dataBuffer[i1]=0;
+              fgets(dataBuffer, sizeof(dataBuffer), stream);
+//              i1=strcmp(dataBuffer,"'h") ;
+              v1=dataBuffer[0];
+              v2=dataBuffer[1];
+              if(v1==39 & v2==104)       //check 'h determine the reg address
+                  {
+                   i2=HexToInt(dataBuffer[2]);
+                   i3=HexToInt(dataBuffer[3]);
+                   j3=i2*16+i3;
+                   i3=0;
+                   reg_id[number_reg]=j3;
+                   if(j3<10) addrc="00"+IntToStr(j3);
+                   else if(j3<100) addrc="0"+IntToStr(j3);
+                   else  addrc=IntToStr(j3);
+                   number_reg++;
+
+                     do {
+                         for (i1=0;i1<60;i1++) dataBuffer[i1]=0;
+                         fgets(dataBuffer, sizeof(dataBuffer), stream);
+                         i0=strcmp(dataBuffer,"rw") ;
+                         for (i1=0;i1<37;i1++)
+                            {
+                              v1=dataBuffer[i1];
+                              v2=dataBuffer[i1+1];
+                              if (v1==114 & v2==119)       // find "rw" and the reg number and values
+                                 {
+                                   if(dataBuffer[i1+4]==32)
+                                     i2=HexToInt(dataBuffer[i1+3]);
+                                   else
+                                     i2=HexToInt(dataBuffer[i1+3])*10+HexToInt(dataBuffer[i1+4]);
+
+                                   data=readdata();
+                                   char *p;
+
+
+                                   for (bit=i3;bit<i3+i2;bit++)
+                                    {
+
+                                        p = strtok(&(dataBuffer[3]), "\t" );
+                                       // register_name[j3][bit]=0;
+
+                                       if((dataBuffer[i1-2]>47) & (dataBuffer[i1-2]<58))
+                                        {
+                                          if(i1<16) memcpy(register_name[j3][bit], &(p[0]),i1-4);      //i1-4
+                                          else  memcpy(register_name[j3][bit], &(p[0]),12);      //i1-4
+                                         }
+                                        else
+                                        {
+                                          if(i1<16) memcpy(register_name[j3][bit], &(p[0]),i1-4);      //i1-4
+                                          else  memcpy(register_name[j3][bit], &(p[0]),12);      //i1-4
+                                         }
+
+                                        reg[j3][bit]=(0x1& data>>(bit-i3))?1:0;
+                                        String v4;
+
+                                        if((bit-i3)<10)  v4=register_name[j3][bit]+IntToStr(bit-i3);
+                                        else             v4=register_name[j3][bit]+IntToStr(bit-i3);
+
+                                        regname[j3][bit]=v4;
+
+                                        if(bit<10) outc=addrc+" 0"+IntToStr(bit)+" "+IntToStr(reg[j3][bit]);
+                                        else outc=addrc+" "+IntToStr(bit)+" "+IntToStr(reg[j3][bit]);
+                               //         TOpen = fopen("register.txt", "a");
+                               //         fprintf(TOpen, "%s %s \n", outc,v4)  ;
+                                //        fclose(TOpen);
+
+                                    }
+                                    i3=bit;
+                                  }
+                            }
+                      } while (i0==-32)  ;
+                  }
+
+        } while (!feof(stream)) ;
+
+
+         fclose(stream);
+
+         TOpen = fopen("register.txt", "a");
+         fprintf(TOpen, "%s \n", "register")  ;
+         fprintf(TOpen, "%d \n", number_reg)  ;
+         fclose(TOpen);
+
+         for (addr = 0 ; addr <number_reg; addr++)
+         {
+           id=reg_id[addr];
+           if(id<10) addrc="00"+IntToStr(id);
+           else if(id<100) addrc="0"+IntToStr(id);
+           else  addrc=IntToStr(id);
+
+           for (unsigned char i = 16; i>0; i--)
+           {
+             bit =i-1;
+             if(bit<10) outc=addrc+" 0"+IntToStr(bit)+" "+IntToStr(reg[id][bit])+"  "+regname[id][bit] ;
+             else outc=addrc+" "+IntToStr(bit)+" "+IntToStr(reg[id][bit])+"  "+regname[id][bit] ;
+//             if(bit<10) outc=addrc+" 0"+IntToStr(bit)+" "+IntToStr(bit)+"  "+regname[id][bit] ;
+//             else outc=addrc+" "+IntToStr(bit)+" "+IntToStr(bit-10)+"  "+regname[id][bit] ;
+
+             TOpen = fopen("register.txt", "a");
+             fprintf(TOpen, "%s \n", outc)  ;
+             fclose(TOpen);
+
+           }
+         }
+
+
+     }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Open1Click(TObject *Sender)
+{
+  unsigned int addr,bit,id;
+  char *p;
+  AnsiString temp;
+  FILE * stream;
+  SendAll->Enabled=false;
+  ReadAll->Enabled=false;
+  ProgressBar1->Visible =true ;
+
+
+  if(OpenDialog1->Execute() )
+  {
+    stream = fopen(OpenDialog1->FileName.c_str(), "r+");
+  //stream=fopen("register.txt", "r");
+  if (stream!=NULL)
+    {
+        fgets(dataBuffer, sizeof(dataBuffer), stream);
+        if(strcmp(dataBuffer,"register")>0)
+        {
+            // at this version we set the max register to be 255
+             fgets(dataBuffer, sizeof(dataBuffer), stream);
+             number_reg=StrToInt(dataBuffer[0])*10+StrToInt(dataBuffer[1]);
+             for (addr=0;addr<number_reg;addr++)
+              {
+                for (bit=16;bit>0;bit--)
+                 {
+
+                   fgets(dataBuffer, sizeof(dataBuffer), stream);
+                   id=100*StrToInt(dataBuffer[0])+10*StrToInt(dataBuffer[1])+StrToInt(dataBuffer[2]);
+                   reg_id[addr]=id;
+//                   reg[id][bit]=StrToInt(dataBuffer[7]);     //[01]=address, [2]=space;[3]=bit;[4]=space;[5]=data
+                   reg[id][bit-1]=(StrToInt(dataBuffer[7])==1)?1:0;     //[01]=address, [2]=space;[3]=bit;[4]=space;[5]=data
+                   p = strtok(&(dataBuffer[10]), "\n" );
+
+                   strncpy(register_name[id][bit-1], &(p[0]),29);      //i1-4
+//                   outd=register_name[id][bit-1];
+
+//                   memcpy(register_name[id][bit-1], &(p[0]),StrLen(p));      //i1-4
+
+                   regname[id][bit-1]=register_name[id][bit-1];
+//                   outd=              register_name[id][bit-1];
+                   temp="button";
+                   temp=temp+IntToStr((addr)*16+16-bit+1);
+                   button_tmp = (TButton *)(FindComponent(temp));
+                   button_tmp->Caption=reg[id][bit-1];
+
+                   temp="label";
+                   temp=temp+IntToStr((addr)*16+16-bit+1);
+                   label_tmp = (TLabel *)(FindComponent(temp));
+                   label_tmp->Caption=register_name[id][bit-1];
+                 }
+                   temp="GroupBox";
+                   temp=temp+IntToStr(addr+1);
+                   groupbox_tmp = (TGroupBox *)(FindComponent(temp));
+                   int xxxx=id;
+                   int yy0= bin2dec(id,15,0);
+                   groupbox_tmp->Caption="Read Reg"+IntToStr(id)+"  0x"+IntToHex(yy0,4);
+//                   groupbox_tmp->Caption="Read Reg0x"+IntToHex(xxxx,2)+"  "+"0x"+IntToHex(yy0,4);
+                   groupbox_tmp->Visible  =true;
+                   data=bin2dec(id,15,0);
+
+                   if (id!=129) pUART->register_write(id | 0x8200,data);
+                   else  pUART->register_write(id | 0x8000,data);
+                   Sleep(40);
+
+                    ProgressBar1->Position=100*addr/number_reg;
+                    SendAll->Enabled=true;
+                   // ProgressBar1->Visible =false ;
+                    Edit3->Text= "Register"+ IntToStr(id) ;//+ "  0x"+IntToHex(data);
+                    Edit3->Update();
+               //    pUART->register_write(id,data);
+               }
+                    SendAll->Enabled=true;
+                    ReadAll->Enabled=true;
+                    ProgressBar1->Visible =false ;
+
+        }
+        else
+        {
+                ShowMessage ("NO 'register' exist");
+         }
+        fclose(stream);
+     }
+
+     else
+        {
+
+      stream=fopen("register.txt", "w");
+      AnsiString addrc="register";
+      fprintf(stream, "%s \n", addrc);
+      fprintf(stream, "85 \n");
+                 // at this version we set the max register to be 255 /
+                for (addr=0;addr<number_reg;addr++)
+                  {
+                   id=addr;
+                   for (bit=0;bit<8;bit++)
+                     {
+
+                        if(id<10) addrc="00"+IntToStr(id);
+                         else if(addr<100) addrc="0"+IntToStr(id);
+                           else  addrc=IntToStr(id);
+
+                       fprintf(stream, "%s %d %i \n", addrc, bit, reg[id][bit]);
+                     }
+                   }
+                 fclose(stream);
+        }
+
+   }
+
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ReadAllClick(TObject *Sender)
+{
+   int addr,data,id,bit;
+   ReadAll->Enabled=false;
+   ProgressBar1->Visible =true ;
+
+   for (addr = 0 ; addr <number_reg; addr++)
+      {
+        id=reg_id[addr];
+        if(id!=129) data=pUART->register_read(id | 0xc200, read_data);
+        else  data=pUART->register_read(id | 0xc000, read_data);
+        Sleep(40);
+//         Edit3->Update();
+
+        temp="GroupBox";
+//        temp=temp + IntToStr(id+1);
+        temp=temp + IntToStr(addr+1);
+        button_tmp = (TButton *)(FindComponent(temp));
+        int yy0;
+        yy0=data & 0xffff;
+        button_tmp->Caption="Read Reg"+IntToStr(id)+"  0x"+IntToHex(yy0,2);
+        Edit3->Update();
+        button_tmp->Update();
+
+        ProgressBar1->Position=100*addr/number_reg;
+        Edit3->Text=IntToHex(id,2);
+//---------------------------update bit----------------
+        for(bit=0;bit<8;bit++)
+        {
+          reg[id][bit]= (data & (1<<bit))?1:0;
+        }
+        for(int bit=0;bit<16;bit++)
+        {
+          temp="button";
+          temp=temp+IntToStr(addr*16+bit+1);
+          button_tmp = (TButton *)(FindComponent(temp));
+          button_tmp->Caption=reg[id][15-bit];
+          button_tmp->Width =24;
+
+        }
+//-----------------------------------
+       }
+
+     ReadAll->Enabled=true;
+     ProgressBar1->Visible =false ;
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::ScriptClick(TObject *Sender)
+{
+  String temp1, temp2, text;
+  unsigned int stringIndex=1; // substring 0 = 1
+  unsigned int address;
+  int i;
+  stringIndex= 0; // strlen (centauri) -1 ('\0\) +2 (CR+LF)
+
+  UINT decimalValue;
+
+//  for (i = 0 ; i<5; i++)
+    temp1=Memo2->Lines->Text.SubString(stringIndex*7,2);
+    text = sscanf(temp1.c_str(), "%x", &address);
+  while (text != -1)
+  {
+    temp2=Memo2->Lines->Text.SubString(stringIndex*7+4,2);
+    text = sscanf(temp2.c_str(), "%x", &decimalValue);
+
+    slaveaddress = bin2dec(0,15,8) >>8 ;
+    data=slaveaddress << 8  | decimalValue;
+    Edit2->Color =clRed;
+    pUART->register_write(address,data);
+    Edit2->Text="Register"+ temp1 + "  0x"+ temp2;
+    Edit2->Color =clLime;
+    stringIndex ++     ;
+    temp1=Memo2->Lines->Text.SubString(stringIndex*7+1,2);
+    text = sscanf(temp1.c_str(), "%x", &address);
+    Sleep(10)   ;
+  }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1601Click(TObject *Sender)
+{
+  SendAll->Enabled=false;
+  ProgressBar1->Visible =true ;
+
+  unsigned int data ;
+  int addr,id;
+
+   for (addr=0;addr<number_reg;addr++)
+    {
+         id=reg_id[addr]  ;
+         data=bin2dec(id,15,0);
+         if(id!=129) pUART->register_write(id+512,data);
+         else pUART->register_write(id,data);
+         ProgressBar1->Position=100*addr/number_reg;
+         Edit3->Text=IntToHex(id,2);
+         Edit3->Update();
+         pUART->register_write(523,0xffff);
+         Sleep(50);
+         pUART->register_write(523,0x0000);
+    }
+   SendAll->Enabled=true;
+   ProgressBar1->Visible =false ;
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1602Click(TObject *Sender)
+{
+        unsigned int da=0x0d, deviceID = 0x1100 ;
+        da = deviceID | da;
+        pUART->register_write(0x0d,da);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+   unsigned int addr,data,id,bit;
+
+  // if (add_test<number_reg) add_test++;
+  // else add_test =0;
+
+   add_test++;
+   id=8;
+   data=(add_test<<6) + 0x17;
+//   for (char i=0;i<20;i++)
+   {
+       pUART->register_write(id | 0x8200,data);
+       Sleep(50);
+       Edit2->Text="Counter"+ IntToStr(id)+"  | " +IntToHex(add_test,2);
+       Edit2->Update();
+
+//        if(id!=129) data=pUART->register_read(id | 0xc200);
+//        else  data=pUART->register_read(id | 0xc000);
+      }
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBox10Change(TObject *Sender)
+{
+        unsigned int addr,data,id;
+        if(ComboBox10->ItemIndex ==0)
+                data = (slaveaddress << 8) | 0x30;
+        else
+                data = (slaveaddress << 8)  | 0x33;
+        id = 0x56  ;
+       // pUART->register_write(0x0d,0x0d0d);
+        pUART->register_write(id,data);
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+void __fastcall TForm1::ComboBox11Change(TObject *Sender)
+{
+   char port=0;
+   char buffer[2];
+   boolean loop1=false;
+   AnsiString outd="";
+   port = ComboBox11->ItemIndex ;
+   loop1=pUART->Openport(port) ;
+   Edit4->Text =itoa(port,buffer,10);
+   PortisOpen=loop1;
+   if(PortisOpen)  {
+     Edit4->Color=clGreen;
+        Form1->ComboBox11->Color=clGreen      ;
+   }
+   else {
+         Edit4->Color=clRed;
+         Form1->ComboBox11->Color=clRed      ;
+
+   }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1604Click(TObject *Sender)
+{
+        int vo;
+        unsigned int addr,data,id;
+        vo = (Edit1->Text.ToInt())   ;
+        data = (slaveaddress << 8) | vo;
+        id = 0x56  ;
+        pUART->register_write(id,data);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1605Click(TObject *Sender)
+{
+        unsigned int addr,data,id;
+        data = (slaveaddress << 8) | 0x30;
+        id = 0x56  ;
+        pUART->register_write(id,data);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ComboBox1Change(TObject *Sender)
+{
+        unsigned int da, deviceID = 0x3300 ;
+        att0[0] = ComboBox1->ItemIndex;
+        da = deviceID | att0[0];
+        Edit2->Text = "Reg0x"+ IntToHex(6,2) + "  0x33"+IntToHex(att0[0], 2);
+        Edit6->Text = power[att0[0]] ;
+        pUART->register_write(0x06,da);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBox2Change(TObject *Sender)
+{
+        unsigned int da, deviceID = 0x3000 ;
+        att0[1] = ComboBox2->ItemIndex;
+        da = deviceID | att0[1];
+        Edit2->Text = "Reg0x"+ IntToHex(6,2) + "  0x30"+IntToHex(att0[1], 2);
+        Edit7->Text = power[att0[1]] ;
+        pUART->register_write(0x06,da);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBox3Change(TObject *Sender)
+{
+        unsigned int da, deviceID = 0x3100 ;
+        att0[2] = ComboBox3->ItemIndex;
+        da = deviceID | att0[2];
+        Edit2->Text = "Reg0x"+ IntToHex(6,2) + "  0x31"+IntToHex(att0[2], 2);
+        Edit10->Text = power[att0[2]] ;
+        pUART->register_write(0x06,da);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::ComboBox4Change(TObject *Sender)
+{
+        unsigned int da, deviceID = 0x3200 ;
+        att0[3] = ComboBox4->ItemIndex;
+        da = deviceID | att0[3];
+        Edit2->Text = "Reg0x"+ IntToHex(6,2) + "  0x32"+IntToHex(att0[3], 2);
+        Edit11->Text = power[att0[3]] ;
+        pUART->register_write(0x06,da);
+}
+//---------------------------------------------------------------------------
+
+
+void set_pll(unsigned char tx,  float fref, float freq)
+{
+        //Tx PLL
+        unsigned int N,frac1,frac2,mode2=25;
+        unsigned int da, deviceID;
+        if (tx) deviceID = 0x1000 ;
+        else   deviceID = 0x1100 ;
+        int fcore;
+//propagation delay
+//      EN_BLEED=0,
+//      BLEED_I[9:0]=0
+//      BLEED_POL=0
+//      R_DEL=0
+//      N_DEL=0
+//      INV_CLKOUT=0
+//lock
+// reg1b: EN_LOL=1,LDWIN_PW=0, EN_LDWIN=1,LD_COUNT[4:0]=0x6
+// LD_COUNT=0x6            100*5/(2*pi*460khz)= 173=0xad
+//reg1c: RST_LD =0
+
+//1:
+//  reg1c:EN_DNCLK,EN_DRCLK,0,0,0,RST_LD=0,0,1
+//  reg32:0, ADC_CLK_SEL =1, 0,0, 1,0,0,1
+//  reg2E:EN_ADC_CNV, 0,0,0, 0,0,EN_ADC,ADC_A_CONV
+//  reg11:EN_AUTOCAL, EN_RDBLR, DCLK_DIV2[1:0],N[11:8]
+//  reg19:CLKOUT2_OP[1:0], CLKOUT1_OP[1:0], PD_CLK, PD_RDET,PD_ADC,PD_CALDAC
+//2:
+//  reg23:CAL_CT_SEL, 0,0,1,1,0,0,0
+//  reg24:0,0,0,0, 0,DCLK_MODE =1,0, 0
+//  reg2F:0,0,0,0,0,0,DCLK_DIV1[1:0]=1
+//3, 4:
+//  reg28: O_VCO_DB, SYNTH_LOCK_TIMEOUT[14:8]  0x4e
+//  reg27: SYNTH_LOCK_TIMEOUT[7:0]  (200u*100M=20000=0x4e20)
+//  reg2A: DEL_CTRL_DB,VCO_ALC_TIMEOUT[14:8]   :0x13
+//  reg29: VCO_ALC_TIMEOUT[7:0]  (50u*100M=5000=0x1388)
+//  reg26: VCO_BAND_DIV[7:0]     (15u*100M/16/2^(DCLK_MODE)  =47 =0x2f
+//  reg2D: ADC_CLK_DIV= 0x3e, <400KHz  (100M/400K-2)/4=62
+
+//5:reg10: Set N[11:0]: reg11[3:0], N_INT[7:0]
+
+//7: reg1c: EN_DRCLK,EN_DRCLK,0,0,0,RST_LD,0,1
+//   reg20:0,0,0,RST_SYS,EN_ADC_CLK,0,0,1
+//        N = freq /fref  ;     //0x11 [15:8] 0x10 [7:0]
+/*
+        da = deviceID | ( 0xa6);
+        pUART->register_write(0x1b,da);
+        da = deviceID | ( 0x80);
+        pUART->register_write(0x11,da);
+        da = deviceID | ( 0x30);
+        pUART->register_write(0x19,da);
+        da = deviceID | ( 0xc1);
+        pUART->register_write(0x1c,da);
+//        da = deviceID | ( 0x98);
+//        pUART->register_write(0x23,da);
+//        da = deviceID | ( 0x04);
+//        pUART->register_write(0x24,da);
+        da = deviceID | ( 0x83);
+        pUART->register_write(0x2e,da);
+        da = deviceID | ( 0x01);
+        pUART->register_write(0x2f,da);
+        da = deviceID | ( 0x09);
+        pUART->register_write(0x32,da);
+
+
+        da = deviceID | ( 0x2f);
+        pUART->register_write(0x26,da);
+        da = deviceID | ( 0x20);
+        pUART->register_write(0x27,da);
+        da = deviceID | ( 0x4e);
+        pUART->register_write(0x28,da);
+        da = deviceID | ( 0x88);
+        pUART->register_write(0x29,da);
+        da = deviceID | ( 0x13);
+        pUART->register_write(0x2a,da);
+        da = deviceID | ( 0x4e);
+        pUART->register_write(0x2d,da);
+*/
+        if ((freq >= 3200) & (freq <6400)) {
+//                fcore = freq*2  ;
+                da = deviceID | ( 0x41);    //CLKOUT_DIV=01
+                pUART->register_write(0x12,da);
+        }
+        else if (freq < 3200 ) {
+//                fcore=freq*4  ;
+                da = deviceID | ( 0x81);    //CLKOUT_DIV=10
+                pUART->register_write(0x12,da);
+        }
+        else {
+//                fcore=freq ;
+                da = deviceID | ( 0x01);    //CLKOUT_DIV=00
+                pUART->register_write(0x12,da);
+        }
+          /*
+        int core=1, vband;
+        if(fcore < 8000) core =0;
+        else if(fcore >9200) core =2;
+        core = int((fcore-6200)/1600) ;
+        vband = 255 - int((fcore-(6200+core*1500))/7.2) ;
+        dd[3] = dd[3] & 0xf3 ;
+        dd[3] = dd[3] | core<<4 ;
+        da = deviceID | dd[3];
+        pUART->register_write(0x13,da);
+
+        da = deviceID | (vband);
+        pUART->register_write(0x26,da);
+        */
+
+        da = deviceID | ( 0xc1);
+        pUART->register_write(0x1c,da);
+        da = deviceID | ( 0x09);
+        pUART->register_write(0x20,da);
+        Sleep(1) ;
+        da = deviceID | ( 0xe7);
+        pUART->register_write(0x1f,da);
+
+        unsigned char lock =0, n =0;
+
+        while((lock==0) & (n<10)) {
+                N = freq /fref  ;     //0x10 [7:0]
+                da = deviceID | N ;
+                pUART->register_write(0x10,da);
+                Sleep(1) ;
+                n +=1 ;
+                da = deviceID | 0x49   ;
+                lock = pUART->register_read(da, read_data) & 0x01;
+                lock = read_data[3] ;
+        }
+        if (lock==1) {
+           if (tx) Form1->Shape2->Brush->Color = clLime ;
+           else  Form1->Shape3->Brush->Color = clLime ;
+        }
+        else  {
+           if(tx)  Form1->Shape2->Brush->Color = clRed ;
+           else  Form1->Shape3->Brush->Color = clRed ;
+        }
+        da = deviceID | ( 0x01);
+        pUART->register_write(0x1c,da);
+        da = deviceID | ( 0x01);
+        pUART->register_write(0x20,da);
+
+}
+
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm1::Shape3MouseDown(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+        int da, deviceID = 0x1100 ;
+        da = deviceID | 0x49 ;
+        da = pUART->register_read(da, read_data);
+        Edit2->Text = "Reg0x49 0x"  + IntToHex(read_data[3],2);
+
+        if ((da & 1) == 1) {
+                Shape3->Brush->Color=clLime ;
+        }
+        else  Shape3->Brush->Color=clRed ;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Shape2MouseDown(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+        int da, deviceID = 0x1000 ;
+        da = deviceID | 0x49 ;
+        da = pUART->register_read(da, read_data);
+        Edit2->Text = "Reg0x49 0x" + IntToHex(read_data[2]<<8+read_data[3],4);
+        if ((read_data[3] & 0x01) == 0x01) Shape2->Brush->Color=clLime ;
+        else  Shape2->Brush->Color=clRed ;
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::UpDown1Click(TObject *Sender, TUDBtnType Button)
+{     
+        int phase;
+        unsigned int addr;
+        int data;
+
+        phase =  UpDown1->Position      ;
+
+        Edit5->Text = IntToStr(phase) ;
+        data = 0x6000 | phase ;
+        Edit2->Text = "Reg165, Reg0x"+ IntToHex(165,2) + "  0x"+IntToHex(phase, 2);
+        pUART->register_write(165,data);
+       // UpDown1->Enabled = True ;
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::UpDown2Click(TObject *Sender, TUDBtnType Button)
+{           //Tx PLL
+        //Rx PLL
+        int phase;
+        unsigned int addr;
+        int data;
+
+        phase =  UpDown2->Position      ;
+
+        Edit12->Text = IntToStr(phase) ;
+        data = 0x6000 | phase ;
+        Edit2->Text = "Reg166, Reg0x"+ IntToHex(166,2) + "  0x"+IntToHex(phase, 2);
+        pUART->register_write(166,data);
+        //UpDown2->Enabled = True ;
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::UpDown3Click(TObject *Sender, TUDBtnType Button)
+{
+        int phase;
+        unsigned int addr;
+        int data;
+
+        phase =  UpDown3->Position      ;
+
+        Edit13->Text = IntToStr(phase) ;
+
+        data = 0x6000 | phase ;
+        Edit2->Text = "Reg167, Reg0x"+ IntToHex(167,2) + "  0x"+IntToHex(phase, 2);
+        pUART->register_write(167,data);
+
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::UpDown4Click(TObject *Sender, TUDBtnType Button)
+{
+        int phase;
+        unsigned int addr;
+        int data;
+
+        phase =  UpDown4->Position      ;
+
+        Edit14->Text = IntToStr(phase) ;
+        data = 0x6000 | phase ;
+        Edit2->Text = "Reg168, Reg0x"+ IntToHex(168,2) + "  0x"+IntToHex(phase, 2);
+        pUART->register_write(168,data);
+
+}
+
+
+void __fastcall TForm1::Shape2ContextPopup(TObject *Sender,
+      TPoint &MousePos, bool &Handled)
+{
+        unsigned char led;
+        led = pUART->register_read(0x1049, read_data);
+        if (read_data[3] & 0x01) Shape2->Brush->Color = clLime ;
+        else  Shape2->Brush->Color = clRed ;
+
+}
+//---------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Shape3ContextPopup(TObject *Sender,
+      TPoint &MousePos, bool &Handled)
+{
+        unsigned char led;
+        led = pUART->register_read(0x1149, read_data);
+        if (read_data[3] & 0x01) Shape3->Brush->Color = clLime ;
+        else  Shape3->Brush->Color = clRed ;
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Timer2Timer(TObject *Sender)
+{
+           //Rx PLL
+        unsigned int N,frac1;
+        unsigned int i, da, deviceID = 0x1000 ;
+        unsigned int fdata;
+        fstep =StrToInt(Edit7->Text);
+        flo  =  flo +  fstep      ;
+        if (flo >9700) flo = 4000 ;
+        pll_tx_i_updown = UpDown1->Position ;
+        //flo = fdata;
+        Edit5->Text = IntToStr(flo) ;
+        Edit2->Text = IntToStr(flo) + "   "+ UpDown1->Position ;
+        fref = (Edit8->Text.ToDouble())  ;
+        //set_pll(1, fref, flo);    //(1=tx, 0 = rx)
+
+        for(i=pll_total-1; i > 0; i--) {
+                Sleep(1)   ;
+                da = 0x1000 | dd[i];
+                pUART->register_write(ad[i],da);
+                Edit2->Text = IntToStr(i);
+        }
+        fref = (Edit8->Text.ToDouble())  ;
+        flo =  (Edit5->Text.ToDouble());
+        set_pll(1, fref, flo);    //(1=tx, 0 = rx)
+
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1610Click(TObject *Sender)
+{
+        if (Timer2->Enabled == true)
+        {
+                Timer2->Enabled = false;
+                Button1603->Caption = "Sweep On"  ;
+        }
+        else
+        {
+                Timer2->Enabled =true;
+                Button1603->Caption = "Sweep Off"  ;
+        }    
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TForm1::Timer4Timer(TObject *Sender)
+{
+        //Rx PLL
+        unsigned int N,frac1;
+        unsigned int i, da, deviceID = 0x1000 ;
+        unsigned int fdata;
+        fstep =StrToInt(Edit7->Text);
+        fref = (Edit8->Text.ToDouble())  ;
+        flo_rx  =  flo_rx +  fstep      ;
+        if (flo_rx >9700) flo = 4000 ;
+        pll_rx_i_updown = UpDown2->Position ;
+        //flo = fdata;
+        Edit6->Text = IntToStr(flo) ;
+        Edit2->Text = IntToStr(flo) + "   "+ UpDown1->Position ;
+
+        for(i=pll_total-1; i > 0; i--) {
+                Sleep(1)   ;
+                da = 0x1000 | dd[i];
+                pUART->register_write(ad[i],da);
+                Edit2->Text = IntToStr(i);
+        }
+        set_pll(0, fref, flo_rx);    //(1=tx, 0 = rx)
+
+
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1614Click(TObject *Sender)
+{
+        unsigned int  deviceID = 0x8031 ;
+        pUART->register_write(0x20, deviceID);
+
+        Edit2->Text="Reg0x20  0x" + IntToHex(0x31 ,2);
+        Shape6->Brush->Color =clLime;
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1615Click(TObject *Sender)
+{
+        unsigned int  deviceID = 0x8030 ;
+        pUART->register_write(0x20, deviceID);
+
+        Edit2->Text="Reg0x20  0x" + IntToHex(0x30,2);
+        Shape6->Brush->Color = clWhite;
+}
+
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::PageControl1Change(TObject *Sender)
+{
+        int phase ;
+        phase = bin2dec(165,7,0); //StrToInt(Edit13->Text);
+        Edit5->Text = IntToStr(phase) ;
+        Edit5->Update()  ;
+
+        phase = bin2dec(166,7,0); //StrToInt(Edit13->Text);
+        Edit12->Text = IntToStr(phase) ;
+        Edit12->Update() ;
+
+        phase = bin2dec(167,7,0); //StrToInt(Edit13->Text);
+        Edit13->Text = IntToStr(phase) ;
+        Edit13->Update()  ;
+
+        phase = bin2dec(168,7,0); //StrToInt(Edit13->Text);
+        Edit14->Text = IntToStr(phase) ;
+        Edit14->Update()  ;
+
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit9KeyPress(TObject *Sender, char &Key)
+{
+    if (Key==13) {
+        unsigned int da, deviceID = 0x3400 ;
+        float flo, fref;
+        int n3,n2,n1, n0;
+        fref = StrToFloat(Edit8->Text) ;
+        flo = StrToFloat(Edit9->Text) ;
+        n3 = 65536*(flo/fref) ;
+        n2 = n3 >> 16;
+        n1 = (n3 >> 8) & 0xff ;
+        n0 = n3 & 0xff ;
+
+        da = deviceID | n2;
+        pUART->register_write(0x0b,da);
+
+        da = deviceID | n1;
+        pUART->register_write(0x0c,da);
+
+        da = deviceID | n0;
+        pUART->register_write(0x0d,da);
+  }
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit5KeyPress(TObject *Sender, char &Key)
+{
+    if (Key==13) {
+        int da, deviceID = 0x6000;
+        unsigned char phase=0, addr=165 ;
+        phase = StrToInt(Edit5->Text) ;
+        da = deviceID | phase;
+        Edit2->Text = "Reg0x"+ IntToHex(addr,2) + "  0x"+IntToHex(phase, 2);
+        UpDown1->Position = phase   ;
+        pUART->register_write(addr,da);
+
+      }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit12KeyPress(TObject *Sender, char &Key)
+{
+       if (Key==13) {
+        int da, deviceID = 0x6000;
+        unsigned char phase=0, addr=166 ;
+        phase = StrToInt(Edit12->Text) ;
+        da = deviceID | phase;
+        Edit2->Text = "Reg0x"+ IntToHex(addr,2) + "  0x"+IntToHex(phase, 2);
+        UpDown2->Position = phase   ;
+        pUART->register_write(addr,da);
+
+      }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit13KeyPress(TObject *Sender, char &Key)
+{
+        if (Key==13) {
+        int da, deviceID = 0x6000;
+        unsigned char phase=0, addr=167 ;
+        phase = StrToInt(Edit13->Text) ;
+        da = deviceID | phase;
+        Edit2->Text = "Reg0x"+ IntToHex(addr,2) + "  0x"+IntToHex(phase, 2);
+        UpDown3->Position = phase   ;
+        pUART->register_write(addr,da);
+
+      }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Edit14KeyPress(TObject *Sender, char &Key)
+{
+        if (Key==13) {
+        int da, deviceID = 0x6000;
+        unsigned char phase=0, addr=168 ;
+        phase = StrToInt(Edit14->Text) ;
+        da = deviceID | phase;
+        Edit2->Text = "Reg0x"+ IntToHex(addr,2) + "  0x"+IntToHex(phase, 2);
+        UpDown4->Position = phase   ;
+        pUART->register_write(addr,da);
+
+      }
+}
+//---------------------------------------------------------------------------
+
