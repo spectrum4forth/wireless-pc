@@ -60,7 +60,7 @@ bool UART::send_and_receive(unsigned char len)
                 printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
         }
         //       WriteFile(m_hCommPort, &data,(DWORD) sizeof(data), &dwBytesWritten, NULL);
-        WriteFile(m_hCommPort, buf, len, &dwBytesWritten, NULL);
+        WriteFile(m_hCommPort2, buf, len, &dwBytesWritten, NULL);
 
         // set short timeouts on the comm port.
          timeouts.ReadIntervalTimeout = 1;
@@ -165,7 +165,7 @@ int UART::Openport(int com)
     config.DCBlength = sizeof(config);
 
 
-    if((GetCommState(m_hCommPort, &config) == 0))
+    if((GetCommState(m_hCommPort2, &config) == 0))
     {
         printf("Get configuration port has a problem.");
         return 0;

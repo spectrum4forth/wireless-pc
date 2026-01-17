@@ -1,0 +1,28 @@
+//---------------------------------------------------------------------------
+
+#ifndef UART2H
+#define UART2H
+//---------------------------------------------------------------------------
+#endif
+
+
+
+//---------------------------------------------------------------------------
+
+class UART2
+{
+public:
+
+	/* Status update */
+        int UART2::send(unsigned char len) ;
+        bool UART2:: send_and_receive(unsigned char len)   ;
+        int UART2::Openport(int com)   ;
+        int UART2::Closeport(int com);
+        void UART2::register_write(int address,int data) ;
+        bool UART2::register_read(int address,BYTE data[]) ;
+
+protected:
+	// Declare pointers and variables
+
+};
+

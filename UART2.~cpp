@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <io.h>
 #pragma hdrstop
-#include "UART.h"
+#include "UART2.h"
 
-HANDLE m_hCommPort;
+HANDLE m_hCommPort2;
 DCB config = {0};
-    int com=1;
+    int com=2;
     bool abContinue = true;
     int isRead = false;
     int rxdata[16];
@@ -28,7 +28,7 @@ unsigned char HexToInt (char ch)
 //------------------------------------------------------------------------------
 
 
-int UART::send(unsigned char len)
+int UART2::send(unsigned char len)
 {
     DWORD dwBytesWritten=5;
     COMMTIMEOUTS timeouts;
@@ -36,7 +36,7 @@ int UART::send(unsigned char len)
     DWORD written;
    int xx;
 
-    if (!SetCommState(m_hCommPort, &config))
+    if (!SetCommState(m_hCommPort2, &config))
     {
 
         printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -44,23 +44,23 @@ int UART::send(unsigned char len)
     }
       //  int isWritten =
 //        WriteFile(m_hCommPort, &data,(DWORD) sizeof(data), &dwBytesWritten, NULL);
-        WriteFile(m_hCommPort, buf, len, &dwBytesWritten, NULL);
+        WriteFile(m_hCommPort2, buf, len, &dwBytesWritten, NULL);
 
    return xx ;
 }
 
-bool UART::send_and_receive(unsigned char len)
+bool UART2::send_and_receive(unsigned char len)
 {
         DWORD dwBytesWritten=2;
         COMMTIMEOUTS timeouts;
 
-        if (!SetCommState(m_hCommPort, &config))
+        if (!SetCommState(m_hCommPort2, &config))
         {
 
                 printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
         }
         //       WriteFile(m_hCommPort, &data,(DWORD) sizeof(data), &dwBytesWritten, NULL);
-        WriteFile(m_hCommPort, buf, len, &dwBytesWritten, NULL);
+        WriteFile(m_hCommPort2, buf, len, &dwBytesWritten, NULL);
 
         // set short timeouts on the comm port.
          timeouts.ReadIntervalTimeout = 1;
@@ -69,7 +69,7 @@ bool UART::send_and_receive(unsigned char len)
          timeouts.WriteTotalTimeoutMultiplier = 1;
          timeouts.WriteTotalTimeoutConstant = 1;
 
-         if (!SetCommTimeouts(m_hCommPort, &timeouts))
+         if (!SetCommTimeouts(m_hCommPort2, &timeouts))
          //system_error("setting port time-outs.");
           {
            printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -79,7 +79,7 @@ bool UART::send_and_receive(unsigned char len)
         DWORD total_read = 0;
         BOOL success   ;
         DWORD bytes_this_time = 0;
-        success = ReadFile(m_hCommPort,rx_buf,6,&bytes_this_time,NULL);
+        success = ReadFile(m_hCommPort2,rx_buf,6,&bytes_this_time,NULL);
         /*
         while (total_read < 6)
         {
@@ -99,7 +99,7 @@ bool UART::send_and_receive(unsigned char len)
 
 //---------------------------------------------------------------------------
 
-int UART::Closeport(int com)
+int UART2::Closeport(int com)
 {
         char * ComX="COM1";
         if(com==2) ComX="COM2";
@@ -112,7 +112,7 @@ int UART::Closeport(int com)
         else if (com==9) ComX="COM9";
         else if(com==10) ComX="COM10";
 
-        m_hCommPort = ::CreateFile(ComX,
+        m_hCommPort2 = ::CreateFile(ComX,
         GENERIC_READ|GENERIC_WRITE,//access ( read and write)
 
         0,    //(share) 0:cannot share the COM port
@@ -128,13 +128,13 @@ int UART::Closeport(int com)
         );
 
     config.DCBlength = sizeof(config);
-    CloseHandle(m_hCommPort)  ;
+    CloseHandle(m_hCommPort2)  ;
     return 0;
 }
 //---------------------------------------------------------------------------
 
 
-int UART::Openport(int com)
+int UART2::Openport(int com)
 {
         char * ComX="COM1";
         if(com==2) ComX="COM2";
@@ -147,7 +147,7 @@ int UART::Openport(int com)
         else if (com==9) ComX="COM9";
         else if(com==10) ComX="COM10";
 
-        m_hCommPort = ::CreateFile(ComX,
+        m_hCommPort2 = ::CreateFile(ComX,
         GENERIC_READ|GENERIC_WRITE,//access ( read and write)
 
         0,    //(share) 0:cannot share the COM port
@@ -165,7 +165,7 @@ int UART::Openport(int com)
     config.DCBlength = sizeof(config);
 
 
-    if((GetCommState(m_hCommPort, &config) == 0))
+    if((GetCommState(m_hCommPort2, &config) == 0))
     {
         printf("Get configuration port has a problem.");
         return 0;
@@ -179,7 +179,7 @@ int UART::Openport(int com)
     config.fDtrControl = 0;
     config.fRtsControl = 0;
 
-    if (!SetCommState(m_hCommPort, &config))
+    if (!SetCommState(m_hCommPort2, &config))
     {
 
      //   printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -195,8 +195,7 @@ int UART::Openport(int com)
 //---------------------------------------------------------------------------
 
 
-
-void UART::register_write(int address,int data)
+void UART2::register_write(int address,int data)
 {
 
       unsigned char sa;
@@ -212,7 +211,7 @@ void UART::register_write(int address,int data)
 }
 //---------------------------------------------------------------------------
 
-bool UART::register_read(int address, BYTE data[])
+bool UART2::register_read(int address, BYTE data[])
 {
       unsigned char sa;
       sa = (address & 0xff00) >>8;

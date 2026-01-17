@@ -1,0 +1,1602 @@
+register 
+100
+002 15 0           
+002 14 0           
+002 13 1 DeviceID<5>           
+002 12 1 DeviceID<4>           
+002 11 1 DeviceID<3>          
+002 10 0 DeviceID<2>           
+002 09 0 DeviceID<1>           
+002 08 0 DeviceID<0>           
+002 07 0 SYS_INIT_MASK
+002 06 1 LOL_B_MASK
+002 05 0 LOL_A_MASK 
+002 04 1 CLK_LOS_MASK
+002 03 0 XO_LOS_MASK 
+002 02 0  
+002 01 0  
+002 00 0 
+003 15 0           
+003 14 0           
+003 13 1 DeviceID<5>           
+003 12 1 DeviceID<4>           
+003 11 1 DeviceID<3>          
+003 10 0 DeviceID<2>           
+003 09 0 DeviceID<1>           
+003 08 0 DeviceID<0>           
+003 07 0 CLK_OEB
+003 06 0 CLK_OEB
+003 05 0 CLK_OEB 
+003 04 0 CLK_OEB
+003 03 0 CLK_OEB 
+003 02 0 CLK_OEB 
+003 01 0 CLK_OEB 
+003 00 0 CLK_OEB
+004 15 0           
+004 14 1           
+004 13 1 DeviceID<5>           
+004 12 0 DeviceID<4>           
+004 11 0 DeviceID<3>          
+004 10 0 DeviceID<2>           
+004 09 0 DeviceID<1>           
+004 08 0 DeviceID<0>           
+004 07 0     
+004 06 0   
+004 05 0 DIS_RESET_LOLB 
+004 04 0 DIS_RESET_LOLA
+004 03 0     
+004 02 0    
+004 01 0    
+004 00 0   
+007 15 0           
+007 14 1           
+007 13 1 DeviceID<5>           
+007 12 0 DeviceID<4>           
+007 11 0 DeviceID<3>          
+007 10 0 DeviceID<2>           
+007 09 0 DeviceID<1>           
+007 08 0 DeviceID<0>           
+007 07 0 I2C_ADDR_CTRL
+007 06 0 I2C_ADDR_CTRL
+007 05 0 I2C_ADDR_CTRL 
+007 04 0 I2C_ADDR_CTRL
+007 03 0    
+007 02 0    
+007 01 0    
+007 00 0   
+015 15 0           
+015 14 1           
+015 13 1 DeviceID<5>           
+015 12 0 DeviceID<4>           
+015 11 0 DeviceID<3>          
+015 10 0 DeviceID<2>           
+015 09 0 DeviceID<1>           
+015 08 0 DeviceID<0>           
+015 07 0 CLKIN_DIV
+015 06 0 CLKIN_DIV
+015 05 0 PLLB_INSELB 
+015 04 0 PLLA_INSELB 
+015 03 0 PLLB_SRC 
+015 02 0 PLLA_SRC 
+015 01 0 CLK_OEB 
+015 00 0 CLK_OEB
+016 15 0           
+016 14 1           
+016 13 1 DeviceID<5>           
+016 12 0 DeviceID<4>           
+016 11 0 DeviceID<3>          
+016 10 0 DeviceID<2>           
+016 09 0 DeviceID<1>           
+016 08 0 DeviceID<0>           
+016 07 0 CLK0_PDN 
+016 06 0 MS0_INT
+016 05 0 MS0_SRC 
+016 04 0 CLK0_INV
+016 03 0 CLK0_SRC 
+016 02 0 CLK0_SRC 
+016 01 0 CLK0_IDRV 
+016 00 0 CLK0_IDRV
+016 15 0           
+016 14 1           
+016 13 1 DeviceID<5>           
+016 12 0 DeviceID<4>           
+016 11 0 DeviceID<3>          
+016 10 0 DeviceID<2>           
+016 09 0 DeviceID<1>           
+016 08 0 DeviceID<0>           
+016 07 0 CLK0_PDN 
+016 06 0 MS0_INT
+016 05 0 MS0_SRC 
+016 04 0 CLK0_INV
+016 03 0 CLK0_SRC 
+016 02 0 CLK0_SRC 
+016 01 0 CLK0_IDRV 
+016 00 0 CLK0_IDRV
+017 15 0           
+017 14 1           
+017 13 1 DeviceID<5>           
+017 12 0 DeviceID<4>           
+017 11 0 DeviceID<3>          
+017 10 0 DeviceID<2>           
+017 09 0 DeviceID<1>           
+017 08 0 DeviceID<0>           
+017 07 0 CLK1_PDN 
+017 06 0 MS1_INT
+017 05 0 MS1_SRC 
+017 04 0 CLK1_INV
+017 03 0 CLK1_SRC 
+017 02 0 CLK1_SRC 
+017 01 0 CLK1_IDRV 
+017 00 0 CLK1_IDRV
+018 15 0           
+018 14 1           
+018 13 1 DeviceID<5>           
+018 12 0 DeviceID<4>           
+018 11 0 DeviceID<3>          
+018 10 0 DeviceID<2>           
+018 09 0 DeviceID<1>           
+018 08 0 DeviceID<0>           
+018 07 0 CLK2_PDN 
+018 06 0 MS2_INT
+018 05 0 MS2_SRC 
+018 04 0 CLK2_INV
+018 03 0 CLK2_SRC 
+018 02 0 CLK2_SRC 
+018 01 0 CLK2_IDRV 
+018 00 0 CLK2_IDRV
+019 15 0           
+019 14 1           
+019 13 1 DeviceID<5>           
+019 12 0 DeviceID<4>           
+019 11 0 DeviceID<3>          
+019 10 0 DeviceID<2>           
+019 09 0 DeviceID<1>           
+019 08 0 DeviceID<0>           
+019 07 0 CLK3_PDN 
+019 06 0 MS3_INT
+019 05 0 MS3_SRC 
+019 04 0 CLK3_INV
+019 03 0 CLK3_SRC 
+019 02 0 CLK3_SRC 
+019 01 0 CLK3_IDRV 
+019 00 0 CLK3_IDRV
+028 15 0           
+028 14 1           
+028 13 1 DeviceID<5>           
+028 12 0 DeviceID<4>           
+028 11 0 DeviceID<3>          
+028 10 0 DeviceID<2>           
+028 09 0 DeviceID<1>           
+028 08 0 DeviceID<0>           
+028 07 0     
+028 06 0   
+028 05 0   
+028 04 0 
+028 03 0     
+028 02 0    
+028 01 0 MSNA_P1<17>   
+028 00 0 MSNA_P1<16> 
+029 15 0           
+029 14 1           
+029 13 1 DeviceID<5>           
+029 12 0 DeviceID<4>           
+029 11 0 DeviceID<3>          
+029 10 0 DeviceID<2>           
+029 09 0 DeviceID<1>           
+029 08 0 DeviceID<0>           
+029 07 0 MSNA_P1<15>    
+029 06 0 MSNA_P1<14>  
+029 05 0 MSNA_P1<13>  
+029 04 0 MSNA_P1<12>
+029 03 0 MSNA_P1<11>    
+029 02 0 MSNA_P1<10>   
+029 01 0 MSNA_P1<9>   
+029 00 0 MSNA_P1<8> 
+030 15 0           
+030 14 1           
+030 13 1 DeviceID<5>           
+030 12 0 DeviceID<4>           
+030 11 0 DeviceID<3>          
+030 10 0 DeviceID<2>           
+030 09 0 DeviceID<1>           
+030 08 0 DeviceID<0>           
+030 07 0 MSNA_P1<7>    
+030 06 0 MSNA_P1<6>  
+030 05 0 MSNA_P1<5>  
+030 04 0 MSNA_P1<4>
+030 03 0 MSNA_P1<3>    
+030 02 0 MSNA_P1<2>   
+030 01 0 MSNA_P1<1>   
+030 00 0 MSNA_P1<0> 
+031 15 0           
+031 14 1           
+031 13 1 DeviceID<5>           
+031 12 0 DeviceID<4>           
+031 11 0 DeviceID<3>          
+031 10 0 DeviceID<2>           
+031 09 0 DeviceID<1>           
+031 08 0 DeviceID<0>           
+031 07 0     
+031 06 0   
+031 05 0   
+031 04 0 
+031 03 0 MSNA_P2<19>    
+031 02 0 MSNA_P2<18>   
+031 01 0 MSNA_P2<17>   
+031 00 0 MSNA_P2<16> 
+032 15 0           
+032 14 1           
+032 13 1 DeviceID<5>           
+032 12 0 DeviceID<4>           
+032 11 0 DeviceID<3>          
+032 10 0 DeviceID<2>           
+032 09 0 DeviceID<1>           
+032 08 0 DeviceID<0>           
+032 07 0 MSNA_P2<15>    
+032 06 0 MSNA_P2<14>  
+032 05 0 MSNA_P2<13>  
+032 04 0 MSNA_P2<12>
+032 03 0 MSNA_P2<11>    
+032 02 0 MSNA_P2<10>   
+032 01 0 MSNA_P2<9>   
+032 00 0 MSNA_P2<8> 
+033 15 0           
+033 14 1           
+033 13 1 DeviceID<5>           
+033 12 0 DeviceID<4>           
+033 11 0 DeviceID<3>          
+033 10 0 DeviceID<2>           
+033 09 0 DeviceID<1>           
+033 08 0 DeviceID<0>           
+033 07 0 MSNA_P2<7>    
+033 06 0 MSNA_P2<6>  
+033 05 0 MSNA_P2<5>  
+033 04 0 MSNA_P2<4>
+033 03 0 MSNA_P2<3>    
+033 02 0 MSNA_P2<2>   
+033 01 0 MSNA_P2<1>   
+033 00 0 MSNA_P2<0> 
+034 15 0           
+034 14 1           
+034 13 1 DeviceID<5>           
+034 12 0 DeviceID<4>           
+034 11 0 DeviceID<3>          
+034 10 0 DeviceID<2>           
+034 09 0 DeviceID<1>           
+034 08 0 DeviceID<0>           
+034 07 0 MSNA_P3<15>    
+034 06 0 MSNA_P3<14>  
+034 05 0 MSNA_P3<13>  
+034 04 0 MSNA_P3<12>
+034 03 0 MSNA_P3<11>    
+034 02 0 MSNA_P3<10>   
+034 01 0 MSNA_P3<9>   
+034 00 0 MSNA_P3<8> 
+035 15 0           
+035 14 1           
+035 13 1 DeviceID<5>           
+035 12 0 DeviceID<4>           
+035 11 0 DeviceID<3>          
+035 10 0 DeviceID<2>           
+035 09 0 DeviceID<1>           
+035 08 0 DeviceID<0>           
+035 07 0 MSNA_P3<7>    
+035 06 0 MSNA_P3<6>  
+035 05 0 MSNA_P3<5>  
+035 04 0 MSNA_P3<4>
+035 03 0 MSNA_P3<3>    
+035 02 0 MSNA_P3<2>   
+035 01 0 MSNA_P3<1>   
+035 00 0 MSNA_P3<0> 
+035 15 0           
+035 14 1           
+035 13 1 DeviceID<5>           
+035 12 0 DeviceID<4>           
+035 11 0 DeviceID<3>          
+035 10 0 DeviceID<2>           
+035 09 0 DeviceID<1>           
+035 08 0 DeviceID<0>           
+035 07 0 MSNA_P3<7>    
+035 06 0 MSNA_P3<6>  
+035 05 0 MSNA_P3<5>  
+035 04 0 MSNA_P3<4>
+035 03 0 MSNA_P3<3>    
+035 02 0 MSNA_P3<2>   
+035 01 0 MSNA_P3<1>   
+035 00 0 MSNA_P3<0> 
+036 15 0           
+036 14 1           
+036 13 1 DeviceID<5>           
+036 12 0 DeviceID<4>           
+036 11 0 DeviceID<3>          
+036 10 0 DeviceID<2>           
+036 09 0 DeviceID<1>           
+036 08 0 DeviceID<0>           
+036 07 0     
+036 06 0   
+036 05 0   
+036 04 0 
+036 03 0      
+036 02 0     
+036 01 0 MSNB_P1<17>   
+036 00 0 MSNB_P1<16> 
+037 15 0           
+037 14 1           
+037 13 1 DeviceID<5>           
+037 12 0 DeviceID<4>           
+037 11 0 DeviceID<3>          
+037 10 0 DeviceID<2>           
+037 09 0 DeviceID<1>           
+037 08 0 DeviceID<0>           
+037 07 0 MSNB_P1<15>    
+037 06 0 MSNB_P1<14>  
+037 05 0 MSNB_P1<13>  
+037 04 0 MSNB_P1<12>
+037 03 0 MSNB_P1<11>    
+037 02 0 MSNB_P1<10>   
+037 01 0 MSNB_P1<9>   
+037 00 0 MSNB_P1<8> 
+038 15 0           
+038 14 1           
+038 13 1 DeviceID<5>           
+038 12 0 DeviceID<4>           
+038 11 0 DeviceID<3>          
+038 10 0 DeviceID<2>           
+038 09 0 DeviceID<1>           
+038 08 0 DeviceID<0>           
+038 07 0 MSNB_P1<7>    
+038 06 0 MSNB_P1<6>  
+038 05 0 MSNB_P1<5>  
+038 04 0 MSNB_P1<4>
+038 03 0 MSNB_P1<3>    
+038 02 0 MSNB_P1<2>   
+038 01 0 MSNB_P1<1>   
+038 00 0 MSNB_P1<0> 
+039 15 0           
+039 14 1           
+039 13 1 DeviceID<5>           
+039 12 0 DeviceID<4>           
+039 11 0 DeviceID<3>          
+039 10 0 DeviceID<2>           
+039 09 0 DeviceID<1>           
+039 08 0 DeviceID<0>           
+039 07 0 MSNB_P3<19>    
+039 06 0 MSNB_P3<18>  
+039 05 0 MSNB_P3<17>  
+039 04 0 MSNB_P3<16>
+039 03 0 MSNB_P2<19>     
+039 02 0 MSNB_P2<18>    
+039 01 0 MSNB_P2<17>   
+039 00 0 MSNB_P2<16> 
+040 15 0           
+040 14 1           
+040 13 1 DeviceID<5>           
+040 12 0 DeviceID<4>           
+040 11 0 DeviceID<3>          
+040 10 0 DeviceID<2>           
+040 09 0 DeviceID<1>           
+040 08 0 DeviceID<0>           
+040 07 0 MSNB_P2<15>    
+040 06 0 MSNB_P2<14>  
+040 05 0 MSNB_P2<13>  
+040 04 0 MSNB_P2<12>
+040 03 0 MSNB_P2<11>    
+040 02 0 MSNB_P2<10>   
+040 01 0 MSNB_P2<9>   
+040 00 0 MSNB_P2<8> 
+041 15 0           
+041 14 1           
+041 13 1 DeviceID<5>           
+041 12 0 DeviceID<4>           
+041 11 0 DeviceID<3>          
+041 10 0 DeviceID<2>           
+041 09 0 DeviceID<1>           
+041 08 0 DeviceID<0>           
+041 07 0 MSNB_P2<7>    
+041 06 0 MSNB_P2<6>  
+041 05 0 MSNB_P2<5>  
+041 04 0 MSNB_P2<4>
+041 03 0 MSNB_P2<3>    
+041 02 0 MSNB_P2<2>   
+041 01 0 MSNB_P2<1>   
+041 00 0 MSNB_P2<0> 
+042 15 0           
+042 14 1           
+042 13 1 DeviceID<5>           
+042 12 0 DeviceID<4>           
+042 11 0 DeviceID<3>          
+042 10 0 DeviceID<2>           
+042 09 0 DeviceID<1>           
+042 08 0 DeviceID<0>           
+042 07 0 MSO_P3<15>    
+042 06 0 MSO_P3<14>  
+042 05 0 MSO_P3<13>  
+042 04 0 MSO_P3<12>
+042 03 0 MSO_P3<11>    
+042 02 0 MSO_P3<10>   
+042 01 0 MSO_P3<9>   
+042 00 0 MSO_P3<8> 
+043 15 0           
+043 14 1           
+043 13 1 DeviceID<5>           
+043 12 0 DeviceID<4>           
+043 11 0 DeviceID<3>          
+043 10 0 DeviceID<2>           
+043 09 0 DeviceID<1>           
+043 08 0 DeviceID<0>           
+043 07 0 MSO_P3<7>    
+043 06 0 MSO_P3<6>  
+043 05 0 MSO_P3<5>  
+043 04 0 MSO_P3<4>
+043 03 0 MSO_P3<3>    
+043 02 0 MSO_P3<2>   
+043 01 0 MSO_P3<1>   
+043 00 0 MSO_P3<0> 
+044 15 0           
+044 14 1           
+044 13 1 DeviceID<5>           
+044 12 0 DeviceID<4>           
+044 11 0 DeviceID<3>          
+044 10 0 DeviceID<2>           
+044 09 0 DeviceID<1>           
+044 08 0 DeviceID<0>           
+044 07 0       
+044 06 0 RO_DIV<2>  
+044 05 0 RO_DIV<1>  
+044 04 0 RO_DIV<0>
+044 03 0 MSO_DIVBY4<1>    
+044 02 0 MSO_DIVBY4<0>   
+044 01 0 MSO_P1<17>   
+044 00 0 MSO_P1<16> 
+045 15 0           
+045 14 1           
+045 13 1 DeviceID<5>           
+045 12 0 DeviceID<4>           
+045 11 0 DeviceID<3>          
+045 10 0 DeviceID<2>           
+045 09 0 DeviceID<1>           
+045 08 0 DeviceID<0>           
+045 07 0 MSO_P1<15>       
+045 06 0 MSO_P1<14>   
+045 05 0 MSO_P1<13>   
+045 04 0 MSO_P1<12> 
+045 03 0 MSO_P1<11>     
+045 02 0 MSO_P1<10>    
+045 01 0 MSO_P1<9>   
+045 00 0 MSO_P1<8> 
+046 15 0           
+046 14 1           
+046 13 1 DeviceID<5>           
+046 12 0 DeviceID<4>           
+046 11 0 DeviceID<3>          
+046 10 0 DeviceID<2>           
+046 09 0 DeviceID<1>           
+046 08 0 DeviceID<0>           
+046 07 0 MSO_P1<7>     
+046 06 0 MSO_P1<6>   
+046 05 0 MSO_P1<5>   
+046 04 0 MSO_P1<4> 
+046 03 0 MSO_P1<3>     
+046 02 0 MSO_P1<2>    
+046 01 0 MSO_P1<1>  
+046 00 0 MSO_P1<0>
+047 15 0           
+047 14 1           
+047 13 1 DeviceID<5>           
+047 12 0 DeviceID<4>           
+047 11 0 DeviceID<3>          
+047 10 0 DeviceID<2>           
+047 09 0 DeviceID<1>           
+047 08 0 DeviceID<0>           
+047 07 0 MSO_P3<19>    
+047 06 0 MSO_P3<18>  
+047 05 0 MSO_P3<17>  
+047 04 0 MSO_P3<16>
+047 03 0 MSO_P2<19>     
+047 02 0 MSO_P2<18>    
+047 01 0 MSO_P2<17>   
+048 00 0 MSO_P2<16> 
+048 15 0           
+048 14 1           
+048 13 1 DeviceID<5>           
+048 12 0 DeviceID<4>           
+048 11 0 DeviceID<3>          
+048 10 0 DeviceID<2>           
+048 09 0 DeviceID<1>           
+048 08 0 DeviceID<0>           
+048 07 0 MSO_P2<15>       
+048 06 0 MSO_P2<14>   
+048 05 0 MSO_P2<13>   
+048 04 0 MSO_P2<12> 
+048 03 0 MSO_P2<11>     
+048 02 0 MSO_P2<10>    
+048 01 0 MSO_P2<9>   
+048 00 0 MSO_P2<8> 
+049 15 0           
+049 14 1           
+049 13 1 DeviceID<5>           
+049 12 0 DeviceID<4>           
+049 11 0 DeviceID<3>          
+049 10 0 DeviceID<2>           
+049 09 0 DeviceID<1>           
+049 08 0 DeviceID<0>           
+049 07 0 MSO_P2<7>     
+049 06 0 MSO_P2<6>   
+049 05 0 MSO_P2<5>   
+049 04 0 MSO_P2<4> 
+049 03 0 MSO_P2<3>     
+049 02 0 MSO_P2<2>    
+049 01 0 MSO_P2<1>  
+049 00 0 MSO_P2<0>
+050 15 0           
+050 14 1           
+050 13 1 DeviceID<5>           
+050 12 0 DeviceID<4>           
+050 11 0 DeviceID<3>          
+050 10 0 DeviceID<2>           
+050 09 0 DeviceID<1>           
+050 08 0 DeviceID<0>           
+050 07 0 MS1_P3<15>       
+050 06 0 MS1_P3<14>   
+050 05 0 MS1_P3<13>   
+050 04 0 MS1_P3<12> 
+050 03 0 MS1_P3<11>     
+050 02 0 MS1_P3<10>    
+050 01 0 MS1_P3<9>   
+050 00 0 MS1_P3<8> 
+051 15 0           
+051 14 1           
+051 13 1 DeviceID<5>           
+051 12 0 DeviceID<4>           
+051 11 0 DeviceID<3>          
+051 10 0 DeviceID<2>           
+051 09 0 DeviceID<1>           
+051 08 0 DeviceID<0>           
+051 07 0 MS1_P3<7>     
+051 06 0 MS1_P3<6>   
+051 05 0 MS1_P3<5>   
+051 04 0 MS1_P3<4> 
+051 03 0 MS1_P3<3>     
+051 02 0 MS1_P3<2>    
+051 01 0 MS1_P3<1>  
+051 00 0 MS1_P3<0>
+052 15 0           
+052 14 1           
+052 13 1 DeviceID<5>           
+052 12 0 DeviceID<4>           
+052 11 0 DeviceID<3>          
+052 10 0 DeviceID<2>           
+052 09 0 DeviceID<1>           
+052 08 0 DeviceID<0>           
+052 07 0       
+052 06 0 R1_DIV<2>  
+052 05 0 R1_DIV<1>  
+052 04 0 R1_DIV<0>
+052 03 0 MS1_DIVBY4<1>    
+052 02 0 MS1_DIVBY4<0>   
+052 01 0 MS1_P1<17>   
+052 00 0 MS1_P1<16> 
+053 15 0           
+053 14 1           
+053 13 1 DeviceID<5>           
+053 12 0 DeviceID<4>           
+053 11 0 DeviceID<3>          
+053 10 0 DeviceID<2>           
+053 09 0 DeviceID<1>           
+053 08 0 DeviceID<0>           
+053 07 0 MS1_P1<15>       
+053 06 0 MS1_P1<14>   
+053 05 0 MS1_P1<13>   
+053 04 0 MS1_P1<12> 
+053 03 0 MS1_P1<11>     
+053 02 0 MS1_P1<10>    
+053 01 0 MS1_P1<9>   
+053 00 0 MS1_P1<8> 
+054 15 0           
+054 14 1           
+054 13 1 DeviceID<5>           
+054 12 0 DeviceID<4>           
+054 11 0 DeviceID<3>          
+054 10 0 DeviceID<2>           
+054 09 0 DeviceID<1>           
+054 08 0 DeviceID<0>           
+054 07 0 MS1_P1<7>     
+054 06 0 MS1_P1<6>   
+054 05 0 MS1_P1<5>   
+054 04 0 MS1_P1<4> 
+054 03 0 MS1_P1<3>     
+054 02 0 MS1_P1<2>    
+054 01 0 MS1_P1<1>  
+054 00 0 MS1_P1<0>
+055 15 0           
+055 14 1           
+055 13 1 DeviceID<5>           
+055 12 0 DeviceID<4>           
+055 11 0 DeviceID<3>          
+055 10 0 DeviceID<2>           
+055 09 0 DeviceID<1>           
+055 08 0 DeviceID<0>           
+055 07 0 MS1_P3<19>    
+055 06 0 MS1_P3<18>  
+055 05 0 MS1_P3<17>  
+055 04 0 MS1_P3<16>
+055 03 0 MS1_P2<19>     
+055 02 0 MS1_P2<18>    
+055 01 0 MS1_P2<17>   
+056 00 0 MS1_P2<16> 
+056 15 0           
+056 14 1           
+056 13 1 DeviceID<5>           
+056 12 0 DeviceID<4>           
+056 11 0 DeviceID<3>          
+056 10 0 DeviceID<2>           
+056 09 0 DeviceID<1>           
+056 08 0 DeviceID<0>           
+056 07 0 MS1_P2<15>       
+056 06 0 MS1_P2<14>   
+056 05 0 MS1_P2<13>   
+056 04 0 MS1_P2<12> 
+056 03 0 MS1_P2<11>     
+056 02 0 MS1_P2<10>    
+056 01 0 MS1_P2<9>   
+056 00 0 MS1_P2<8> 
+057 15 0           
+057 14 1           
+057 13 1 DeviceID<5>           
+057 12 0 DeviceID<4>           
+057 11 0 DeviceID<3>          
+057 10 0 DeviceID<2>           
+057 09 0 DeviceID<1>           
+057 08 0 DeviceID<0>           
+057 07 0 MS1_P2<7>     
+057 06 0 MS1_P2<6>   
+057 05 0 MS1_P2<5>   
+057 04 0 MS1_P2<4> 
+057 03 0 MS1_P2<3>     
+057 02 0 MS1_P2<2>    
+057 01 0 MS1_P2<1>  
+057 00 0 MS1_P2<0>
+058 15 0           
+058 14 1           
+058 13 1 DeviceID<5>           
+058 12 0 DeviceID<4>           
+058 11 0 DeviceID<3>          
+058 10 0 DeviceID<2>           
+058 09 0 DeviceID<1>           
+058 08 0 DeviceID<0>           
+058 07 0 MS2_P3<15>       
+058 06 0 MS2_P3<14>   
+058 05 0 MS2_P3<13>   
+058 04 0 MS2_P3<12> 
+058 03 0 MS2_P3<11>     
+058 02 0 MS2_P3<10>    
+058 01 0 MS2_P3<9>   
+058 00 0 MS2_P3<8> 
+059 15 0           
+059 14 1           
+059 13 1 DeviceID<5>           
+059 12 0 DeviceID<4>           
+059 11 0 DeviceID<3>          
+059 10 0 DeviceID<2>           
+059 09 0 DeviceID<1>           
+059 08 0 DeviceID<0>           
+059 07 0 MS2_P3<7>     
+059 06 0 MS2_P3<6>   
+059 05 0 MS2_P3<5>   
+059 04 0 MS2_P3<4> 
+059 03 0 MS2_P3<3>     
+059 02 0 MS2_P3<2>    
+059 01 0 MS2_P3<1>  
+059 00 0 MS2_P3<0>
+060 15 0           
+060 14 1           
+060 13 1 DeviceID<5>           
+060 12 0 DeviceID<4>           
+060 11 0 DeviceID<3>          
+060 10 0 DeviceID<2>           
+060 09 0 DeviceID<1>           
+060 08 0 DeviceID<0>           
+060 07 0       
+060 06 0 R2_DIV<2>  
+060 05 0 R2_DIV<1>  
+060 04 0 R2_DIV<0>
+060 03 0 MS2_DIVBY4<1>    
+060 02 0 MS2_DIVBY4<0>   
+060 01 0 MS2_P1<17>   
+060 00 0 MS2_P1<16> 
+061 15 0           
+061 14 1           
+061 13 1 DeviceID<5>           
+061 12 0 DeviceID<4>           
+061 11 0 DeviceID<3>          
+061 10 0 DeviceID<2>           
+061 09 0 DeviceID<1>           
+061 08 0 DeviceID<0>           
+061 07 0 MS2_P1<15>       
+061 06 0 MS2_P1<14>   
+061 05 0 MS2_P1<13>   
+061 04 0 MS2_P1<12> 
+061 03 0 MS2_P1<11>     
+061 02 0 MS2_P1<10>    
+061 01 0 MS2_P1<9>   
+061 00 0 MS2_P1<8> 
+062 15 0           
+062 14 1           
+062 13 1 DeviceID<5>           
+062 12 0 DeviceID<4>           
+062 11 0 DeviceID<3>          
+062 10 0 DeviceID<2>           
+062 09 0 DeviceID<1>           
+062 08 0 DeviceID<0>           
+062 07 0 MS2_P1<7>     
+062 06 0 MS2_P1<6>   
+062 05 0 MS2_P1<5>   
+062 04 0 MS2_P1<4> 
+062 03 0 MS2_P1<3>     
+062 02 0 MS2_P1<2>    
+062 01 0 MS2_P1<1>  
+062 00 0 MS2_P1<0>
+063 15 0           
+063 14 1           
+063 13 1 DeviceID<5>           
+063 12 0 DeviceID<4>           
+063 11 0 DeviceID<3>          
+063 10 0 DeviceID<2>           
+063 09 0 DeviceID<1>           
+063 08 0 DeviceID<0>           
+063 07 0 MS2_P3<19>    
+063 06 0 MS2_P3<18>  
+063 05 0 MS2_P3<17>  
+063 04 0 MS2_P3<16>
+063 03 0 MS2_P2<19>     
+063 02 0 MS2_P2<18>    
+063 01 0 MS2_P2<17>   
+063 00 0 MS2_P2<16> 
+064 15 0           
+064 14 1           
+064 13 1 DeviceID<5>           
+064 12 0 DeviceID<4>           
+064 11 0 DeviceID<3>          
+064 10 0 DeviceID<2>           
+064 09 0 DeviceID<1>           
+064 08 0 DeviceID<0>           
+064 07 0 MS2_P2<15>       
+064 06 0 MS2_P2<14>   
+064 05 0 MS2_P2<13>   
+064 04 0 MS2_P2<12> 
+064 03 0 MS2_P2<11>     
+064 02 0 MS2_P2<10>    
+064 01 0 MS2_P2<9>   
+064 00 0 MS2_P2<8> 
+065 15 0           
+065 14 1           
+065 13 1 DeviceID<5>           
+065 12 0 DeviceID<4>           
+065 11 0 DeviceID<3>          
+065 10 0 DeviceID<2>           
+065 09 0 DeviceID<1>           
+065 08 0 DeviceID<0>           
+065 07 0 MS2_P2<7>     
+065 06 0 MS2_P2<6>   
+065 05 0 MS2_P2<5>   
+065 04 0 MS2_P2<4> 
+065 03 0 MS2_P2<3>     
+065 02 0 MS2_P2<2>    
+065 01 0 MS2_P2<1>  
+065 00 0 MS2_P2<0>
+066 15 0           
+066 14 1           
+066 13 1 DeviceID<5>           
+066 12 0 DeviceID<4>           
+066 11 0 DeviceID<3>          
+066 10 0 DeviceID<2>           
+066 09 0 DeviceID<1>           
+066 08 0 DeviceID<0>           
+066 07 0 MS3_P3<15>       
+066 06 0 MS3_P3<14>   
+066 05 0 MS3_P3<13>   
+066 04 0 MS3_P3<12> 
+066 03 0 MS3_P3<11>     
+066 02 0 MS3_P3<10>    
+066 01 0 MS3_P3<9>   
+066 00 0 MS3_P3<8> 
+067 15 0           
+067 14 1           
+067 13 1 DeviceID<5>           
+067 12 0 DeviceID<4>           
+067 11 0 DeviceID<3>          
+067 10 0 DeviceID<2>           
+067 09 0 DeviceID<1>           
+067 08 0 DeviceID<0>           
+067 07 0 MS3_P3<7>     
+067 06 0 MS3_P3<6>   
+067 05 0 MS3_P3<5>   
+067 04 0 MS3_P3<4> 
+067 03 0 MS3_P3<3>     
+067 02 0 MS3_P3<2>    
+067 01 0 MS3_P3<1>  
+067 00 0 MS3_P3<0>
+068 15 0           
+068 14 1           
+068 13 1 DeviceID<5>           
+068 12 0 DeviceID<4>           
+068 11 0 DeviceID<3>          
+068 10 0 DeviceID<2>           
+068 09 0 DeviceID<1>           
+068 08 0 DeviceID<0>           
+068 07 0       
+068 06 0 R3_DIV<2>  
+068 05 0 R3_DIV<1>  
+068 04 0 R3_DIV<0>
+068 03 0 MS3_DIVBY4<1>    
+068 02 0 MS3_DIVBY4<0>   
+068 01 0 MS3_P1<17>   
+068 00 0 MS3_P1<16> 
+069 15 0           
+069 14 1           
+069 13 1 DeviceID<5>           
+069 12 0 DeviceID<4>           
+069 11 0 DeviceID<3>          
+069 10 0 DeviceID<2>           
+069 09 0 DeviceID<1>           
+069 08 0 DeviceID<0>           
+069 07 0 MS3_P1<15>       
+069 06 0 MS3_P1<14>   
+069 05 0 MS3_P1<13>   
+069 04 0 MS3_P1<12> 
+069 03 0 MS3_P1<11>     
+069 02 0 MS3_P1<10>    
+069 01 0 MS3_P1<9>   
+069 00 0 MS3_P1<8> 
+070 15 0           
+070 14 1           
+070 13 1 DeviceID<5>           
+070 12 0 DeviceID<4>           
+070 11 0 DeviceID<3>          
+070 10 0 DeviceID<2>           
+070 09 0 DeviceID<1>           
+070 08 0 DeviceID<0>           
+070 07 0 MS3_P1<7>     
+070 06 0 MS3_P1<6>   
+070 05 0 MS3_P1<5>   
+070 04 0 MS3_P1<4> 
+070 03 0 MS3_P1<3>     
+070 02 0 MS3_P1<2>    
+070 01 0 MS3_P1<1>  
+070 00 0 MS3_P1<0>
+071 15 0           
+071 14 1           
+071 13 1 DeviceID<5>           
+071 12 0 DeviceID<4>           
+071 11 0 DeviceID<3>          
+071 10 0 DeviceID<2>           
+071 09 0 DeviceID<1>           
+071 08 0 DeviceID<0>           
+071 07 0 MS3_P3<19>    
+071 06 0 MS3_P3<18>  
+071 05 0 MS3_P3<17>  
+071 04 0 MS3_P3<16>
+071 03 0 MS3_P2<19>     
+071 02 0 MS3_P2<18>    
+071 01 0 MS3_P2<17>   
+071 00 0 MS3_P2<16> 
+072 15 0           
+072 14 1           
+072 13 1 DeviceID<5>           
+072 12 0 DeviceID<4>           
+072 11 0 DeviceID<3>          
+072 10 0 DeviceID<2>           
+072 09 0 DeviceID<1>           
+072 08 0 DeviceID<0>           
+072 07 0 MS3_P2<15>       
+072 06 0 MS3_P2<14>   
+072 05 0 MS3_P2<13>   
+072 04 0 MS3_P2<12> 
+072 03 0 MS3_P2<11>     
+072 02 0 MS3_P2<10>    
+072 01 0 MS3_P2<9>   
+072 00 0 MS3_P2<8> 
+073 15 0           
+073 14 1           
+073 13 1 DeviceID<5>           
+073 12 0 DeviceID<4>           
+073 11 0 DeviceID<3>          
+073 10 0 DeviceID<2>           
+073 09 0 DeviceID<1>           
+073 08 0 DeviceID<0>           
+073 07 0 MS3_P2<7>     
+073 06 0 MS3_P2<6>   
+073 05 0 MS3_P2<5>   
+073 04 0 MS3_P2<4> 
+073 03 0 MS3_P2<3>     
+073 02 0 MS3_P2<2>    
+073 01 0 MS3_P2<1>  
+073 00 0 MS3_P2<0>
+149 15 0           
+149 14 1           
+149 13 1 DeviceID<5>           
+149 12 0 DeviceID<4>           
+149 11 0 DeviceID<3>          
+149 10 0 DeviceID<2>           
+149 09 0 DeviceID<1>           
+149 08 0 DeviceID<0>           
+149 07 0 SSC_EN     
+149 06 0 SSDN_P2<14>   
+149 05 0 SSDN_P2<13>    
+149 04 0 SSDN_P2<12>  
+149 03 0 SSDN_P2<11>      
+149 02 0 SSDN_P2<10>     
+149 01 0 SSDN_P2<9>   
+149 00 0 SSDN_P2<8> 
+150 15 0           
+150 14 1           
+150 13 1 DeviceID<5>           
+150 12 0 DeviceID<4>           
+150 11 0 DeviceID<3>          
+150 10 0 DeviceID<2>           
+150 09 0 DeviceID<1>           
+150 08 0 DeviceID<0>           
+150 07 0 SSDN_P2<7>     
+150 06 0 SSDN_P2<6>   
+150 05 0 SSDN_P2<5>   
+150 04 0 SSDN_P2<4> 
+150 03 0 SSDN_P2<3>     
+150 02 0 SSDN_P2<2>    
+150 01 0 SSDN_P2<1>  
+150 00 0 SSDN_P2<0>
+151 15 0           
+151 14 1           
+151 13 1 DeviceID<5>           
+151 12 0 DeviceID<4>           
+151 11 0 DeviceID<3>          
+151 10 0 DeviceID<2>           
+151 09 0 DeviceID<1>           
+151 08 0 DeviceID<0>           
+151 07 0 SSC_MODE     
+151 06 0 SSDN_P2<14>   
+151 05 0 SSDN_P2<13>    
+151 04 0 SSDN_P2<12>  
+151 03 0 SSDN_P2<11>      
+151 02 0 SSDN_P2<10>     
+151 01 0 SSDN_P2<9>   
+151 00 0 SSDN_P2<8> 
+152 15 0           
+152 14 1           
+152 13 1 DeviceID<5>           
+152 12 0 DeviceID<4>           
+152 11 0 DeviceID<3>          
+152 10 0 DeviceID<2>           
+152 09 0 DeviceID<1>           
+152 08 0 DeviceID<0>           
+152 07 0 SSDN_P3<7>     
+152 06 0 SSDN_P3<6>   
+152 05 0 SSDN_P3<5>   
+152 04 0 SSDN_P3<4> 
+152 03 0 SSDN_P3<3>     
+152 02 0 SSDN_P3<2>    
+152 01 0 SSDN_P3<1>  
+152 00 0 SSDN_P3<0>
+153 15 0           
+153 14 1           
+153 13 1 DeviceID<5>           
+153 12 0 DeviceID<4>           
+153 11 0 DeviceID<3>          
+153 10 0 DeviceID<2>           
+153 09 0 DeviceID<1>           
+153 08 0 DeviceID<0>           
+153 07 0 SSDN_P1<7>     
+153 06 0 SSDN_P1<6>   
+153 05 0 SSDN_P1<5>   
+153 04 0 SSDN_P1<4> 
+153 03 0 SSDN_P1<3>     
+153 02 0 SSDN_P1<2>    
+153 01 0 SSDN_P1<1>  
+153 00 0 SSDN_P1<0>
+154 15 0           
+154 14 1           
+154 13 1 DeviceID<5>           
+154 12 0 DeviceID<4>           
+154 11 0 DeviceID<3>          
+154 10 0 DeviceID<2>           
+154 09 0 DeviceID<1>           
+154 08 0 DeviceID<0>           
+154 07 0 SSUDP<11>     
+154 06 0 SSUDP<10>   
+154 05 0 SSUDP<9>   
+154 04 0 SSUDP<8> 
+154 03 0 SSDN_P1<11>     
+154 02 0 SSDN_P1<10>    
+154 01 0 SSDN_P1<9>  
+154 00 0 SSDN_P1<8>
+155 15 0           
+155 14 1           
+155 13 1 DeviceID<5>           
+155 12 0 DeviceID<4>           
+155 11 0 DeviceID<3>          
+155 10 0 DeviceID<2>           
+155 09 0 DeviceID<1>           
+155 08 0 DeviceID<0>           
+155 07 0 SSUDP<7>     
+155 06 0 SSUDP<6>   
+155 05 0 SSUDP<5>   
+155 04 0 SSUDP<4> 
+155 03 0 SSUDP<3>     
+155 02 0 SSUDP<2>    
+155 01 0 SSUDP<1>  
+155 00 0 SSUDP<0>
+156 15 0           
+156 14 1           
+156 13 1 DeviceID<5>           
+156 12 0 DeviceID<4>           
+156 11 0 DeviceID<3>          
+156 10 0 DeviceID<2>           
+156 09 0 DeviceID<1>           
+156 08 0 DeviceID<0>           
+156 07 0       
+156 06 0 SSUP_P2<14>   
+156 05 0 SSUP_P2<13>   
+156 04 0 SSUP_P2<12> 
+156 03 0 SSUP_P2<11>     
+156 02 0 SSUP_P2<10>    
+156 01 0 SSUP_P2<9>  
+156 00 0 SSUP_P2<8>
+157 15 0           
+157 14 1           
+157 13 1 DeviceID<5>           
+157 12 0 DeviceID<4>           
+157 11 0 DeviceID<3>          
+157 10 0 DeviceID<2>           
+157 09 0 DeviceID<1>           
+157 08 0 DeviceID<0>           
+157 07 0 SSUP_P2<7>     
+157 06 0 SSUP_P2<6>   
+157 05 0 SSUP_P2<5>   
+157 04 0 SSUP_P2<4> 
+157 03 0 SSUP_P2<3>     
+157 02 0 SSUP_P2<2>    
+157 01 0 SSUP_P2<1>  
+157 00 0 SSUP_P2<0>
+158 15 0           
+158 14 1           
+158 13 1 DeviceID<5>           
+158 12 0 DeviceID<4>           
+158 11 0 DeviceID<3>          
+158 10 0 DeviceID<2>           
+158 09 0 DeviceID<1>           
+158 08 0 DeviceID<0>           
+158 07 0       
+158 06 0 SSUP_P3<14>   
+158 05 0 SSUP_P3<13>   
+158 04 0 SSUP_P3<12> 
+158 03 0 SSUP_P3<11>     
+158 02 0 SSUP_P3<10>    
+158 01 0 SSUP_P3<9>  
+158 00 0 SSUP_P3<8>
+159 15 0           
+159 14 1           
+159 13 1 DeviceID<5>           
+159 12 0 DeviceID<4>           
+159 11 0 DeviceID<3>          
+159 10 0 DeviceID<2>           
+159 09 0 DeviceID<1>           
+159 08 0 DeviceID<0>           
+159 07 0 SSUP_P3<7>     
+159 06 0 SSUP_P3<6>   
+159 05 0 SSUP_P3<5>   
+159 04 0 SSUP_P3<4> 
+159 03 0 SSUP_P3<3>     
+159 02 0 SSUP_P3<2>    
+159 01 0 SSUP_P3<1>  
+159 00 0 SSUP_P3<0>
+160 15 0           
+160 14 1           
+160 13 1 DeviceID<5>           
+160 12 0 DeviceID<4>           
+160 11 0 DeviceID<3>          
+160 10 0 DeviceID<2>           
+160 09 0 DeviceID<1>           
+160 08 0 DeviceID<0>           
+160 07 0 SSUP_P1<7>     
+160 06 0 SSUP_P1<6>   
+160 05 0 SSUP_P1<5>   
+160 04 0 SSUP_P1<4> 
+160 03 0 SSUP_P1<3>     
+160 02 0 SSUP_P1<2>    
+160 01 0 SSUP_P1<1>  
+160 00 0 SSUP_P1<0>
+161 15 0           
+161 14 1           
+161 13 1 DeviceID<5>           
+161 12 0 DeviceID<4>           
+161 11 0 DeviceID<3>          
+161 10 0 DeviceID<2>           
+161 09 0 DeviceID<1>           
+161 08 0 DeviceID<0>           
+160 07 0 SSUP_P1<7>     
+160 06 0 SSUP_P1<6>   
+160 05 0 SSUP_P1<5>   
+160 04 0 SSUP_P1<4> 
+160 03 0 SSUP_P1<3>     
+160 02 0 SSUP_P1<2>    
+160 01 0 SSUP_P1<1>  
+160 00 0 SSUP_P1<0>
+162 15 0           
+162 14 1           
+162 13 1 DeviceID<5>           
+162 12 0 DeviceID<4>           
+162 11 0 DeviceID<3>          
+162 10 0 DeviceID<2>           
+162 09 0 DeviceID<1>           
+162 08 0 DeviceID<0>           
+162 07 0 VCXO_PARM<7>     
+162 06 0 VCXO_PARM<6>   
+162 05 0 VCXO_PARM<5>   
+162 04 0 VCXO_PARM<4> 
+162 03 0 VCXO_PARM<3>     
+162 02 0 VCXO_PARM<2>    
+162 01 0 VCXO_PARM<1>  
+162 00 0 VCXO_PARM<0>
+163 15 0           
+163 14 1           
+163 13 1 DeviceID<5>           
+163 12 0 DeviceID<4>           
+163 11 0 DeviceID<3>          
+163 10 0 DeviceID<2>           
+163 09 0 DeviceID<1>           
+163 08 0 DeviceID<0>           
+163 07 0 VCXO_PARM<15>       
+163 06 0 VCXO_PARM<14>   
+163 05 0 VCXO_PARM<13>   
+163 04 0 VCXO_PARM<12> 
+163 03 0 VCXO_PARM<11>     
+163 02 0 VCXO_PARM<10>    
+163 01 0 VCXO_PARM<9>   
+163 00 0 VCXO_PARM<8>
+164 15 0           
+164 14 1           
+164 13 1 DeviceID<5>           
+164 12 0 DeviceID<4>           
+164 11 0 DeviceID<3>          
+164 10 0 DeviceID<2>           
+164 09 0 DeviceID<1>           
+164 08 0 DeviceID<0>           
+164 07 0          
+164 06 0      
+164 05 0 VCXO_PARM<21>   
+164 04 0 VCXO_PARM<20> 
+164 03 0 VCXO_PARM<19>     
+164 02 0 VCXO_PARM<18>    
+164 01 0 VCXO_PARM<17>   
+164 00 0 VCXO_PARM<16>
+165 15 0           
+165 14 1           
+165 13 1 DeviceID<5>           
+165 12 0 DeviceID<4>           
+165 11 0 DeviceID<3>          
+165 10 0 DeviceID<2>           
+165 09 0 DeviceID<1>           
+165 08 0 DeviceID<0>           
+165 07 0        
+165 06 0 CLK0_PHOFF<6>   
+165 05 0 CLK0_PHOFF<5>   
+165 04 0 CLK0_PHOFF<4> 
+165 03 0 CLK0_PHOFF<3>     
+165 02 0 CLK0_PHOFF<2>    
+165 01 0 CLK0_PHOFF<1>  
+165 00 0 CLK0_PHOFF<0>
+166 15 0           
+166 14 1           
+166 13 1 DeviceID<5>           
+166 12 0 DeviceID<4>           
+166 11 0 DeviceID<3>          
+166 10 0 DeviceID<2>           
+166 09 0 DeviceID<1>           
+166 08 0 DeviceID<0>           
+166 07 0        
+166 06 0 CLK1_PHOFF<6>   
+166 05 0 CLK1_PHOFF<5>   
+166 04 0 CLK1_PHOFF<4> 
+166 03 0 CLK1_PHOFF<3>     
+166 02 0 CLK1_PHOFF<2>    
+166 01 0 CLK1_PHOFF<1>  
+166 00 0 CLK1_PHOFF<0>
+167 15 0           
+167 14 1           
+167 13 1 DeviceID<5>           
+167 12 0 DeviceID<4>           
+167 11 0 DeviceID<3>          
+167 10 0 DeviceID<2>           
+167 09 0 DeviceID<1>           
+167 08 0 DeviceID<0>           
+167 07 0        
+167 06 0 CLK2_PHOFF<6>   
+167 05 0 CLK2_PHOFF<5>   
+167 04 0 CLK2_PHOFF<4> 
+167 03 0 CLK2_PHOFF<3>     
+167 02 0 CLK2_PHOFF<2>    
+167 01 0 CLK2_PHOFF<1>  
+167 00 0 CLK2_PHOFF<0>
+168 15 0           
+168 14 1           
+168 13 1 DeviceID<5>           
+168 12 0 DeviceID<4>           
+168 11 0 DeviceID<3>          
+168 10 0 DeviceID<2>           
+168 09 0 DeviceID<1>           
+168 08 0 DeviceID<0>           
+168 07 0        
+168 06 0 CLK3_PHOFF<6>   
+168 05 0 CLK3_PHOFF<5>   
+168 04 0 CLK3_PHOFF<4> 
+168 03 0 CLK3_PHOFF<3>     
+168 02 0 CLK3_PHOFF<2>    
+168 01 0 CLK3_PHOFF<1>  
+169 00 0 CLK3_PHOFF<0>   
+169 15 0           
+169 14 1           
+169 13 1 DeviceID<5>           
+169 12 0 DeviceID<4>           
+169 11 0 DeviceID<3>          
+169 10 0 DeviceID<2>           
+169 09 0 DeviceID<1>           
+169 08 0 DeviceID<0>           
+169 07 0        
+169 06 0 CLK4_PHOFF<6>   
+169 05 0 CLK4_PHOFF<5>   
+169 04 0 CLK4_PHOFF<4> 
+169 03 0 CLK4_PHOFF<3>     
+169 02 0 CLK4_PHOFF<2>    
+169 01 0 CLK4_PHOFF<1>  
+169 00 0 CLK4_PHOFF<0>  
+170 15 0           
+170 14 1           
+170 13 1 DeviceID<5>           
+170 12 0 DeviceID<4>           
+170 11 0 DeviceID<3>          
+170 10 0 DeviceID<2>           
+170 09 0 DeviceID<1>           
+170 08 0 DeviceID<0>           
+170 07 0        
+170 06 0 CLK5_PHOFF<6>   
+170 05 0 CLK5_PHOFF<5>   
+170 04 0 CLK5_PHOFF<4> 
+170 03 0 CLK5_PHOFF<3>     
+170 02 0 CLK5_PHOFF<2>    
+170 01 0 CLK5_PHOFF<1>  
+170 00 0 CLK5_PHOFF<0>  
+171 15 0           
+171 14 1           
+171 13 1 DeviceID<5>           
+171 12 0 DeviceID<4>           
+171 11 0 DeviceID<3>          
+171 10 0 DeviceID<2>           
+171 09 0 DeviceID<1>           
+171 08 0 DeviceID<0>           
+171 07 0        
+171 06 0 SPARE<6>   
+171 05 0 SPARE<5>   
+171 04 0 SPARE<4> 
+171 03 0 SPARE<3>     
+171 02 0 SPARE<2>    
+171 01 0 SPARE<1>  
+171 00 0 SPARE<0>  
+000 15 0           
+000 14 1           
+000 13 1 DeviceID<5>           
+000 12 0 DeviceID<4>           
+000 11 1 DeviceID<3>          
+000 10 0 DeviceID<2>           
+000 09 0 DeviceID<1>           
+000 08 1 DeviceID<0>           
+000 07 0 xoclkdelay<1>
+000 06 1 xoclkdelay<0>
+000 05 0 xoclkdiv<1> 
+000 04 1 xoclkdiv<0>
+000 03 0  
+000 02 0 fskshape
+000 01 0 sync
+000 00 0 modmode  
+001 15 0         
+001 14 1           
+001 13 1 DeviceID<5>           
+001 12 0 DeviceID<4>           
+001 11 1 DeviceID<3>          
+001 10 0 DeviceID<2>           
+001 09 0 DeviceID<1>           
+001 08 1 DeviceID<0>           
+001 07 0 clkdelay<1>
+001 06 0 clkdelay<0>
+001 05 0   
+001 04 0  
+001 03 0   
+001 02 0 bclk_postdiv<2> 
+001 01 0 bclk_postdiv<1> 
+001 00 0 bclk_postdiv<0>
+002 15 0            
+002 14 1           
+002 13 1 DeviceID<5>           
+002 12 0 DeviceID<4>           
+002 11 1 DeviceID<3>          
+002 10 0 DeviceID<2>           
+002 09 0 DeviceID<1>           
+002 08 1 DeviceID<0>           
+002 07 0 bclk_prediv<7>
+002 06 0 bclk_prediv<6>
+002 05 0 bclk_prediv<5>
+002 04 0 bclk_prediv<4>
+002 03 0 bclk_prediv<3>
+002 02 0 bclk_prediv<2> 
+002 01 0 bclk_prediv<1> 
+002 00 0 bclk_prediv<0>
+003 15 0            
+003 14 1           
+003 13 1 DeviceID<5>           
+003 12 0 DeviceID<4>           
+003 11 1 DeviceID<3>          
+003 10 0 DeviceID<2>           
+003 09 0 DeviceID<1>           
+003 08 1 DeviceID<0>           
+003 07 0  
+003 06 0  
+003 05 0  
+003 04 0  
+003 03 0  
+003 02 0   
+003 01 0 pwdn_mode<1>  
+003 00 0 pwdn_mode<0>  
+004 15 0            
+004 14 1           
+004 13 1 DeviceID<5>           
+004 12 0 DeviceID<4>           
+004 11 1 DeviceID<3>          
+004 10 0 DeviceID<2>           
+004 09 0 DeviceID<1>           
+004 08 1 DeviceID<0>           
+004 07 0 
+004 06 0 
+004 05 0 tstep<5>
+004 04 0 tstep<4>
+004 03 0 tstep<3>
+004 02 0 tstep<2> 
+004 01 0 tstep<1> 
+004 00 0 tstep<0>
+005 15 0            
+005 14 1           
+005 13 1 DeviceID<5>           
+005 12 0 DeviceID<4>           
+005 11 1 DeviceID<3>          
+005 10 0 DeviceID<2>           
+005 09 0 DeviceID<1>           
+005 08 1 DeviceID<0>           
+005 07 0 
+005 06 0 
+005 05 0 
+005 04 0 
+005 03 0 
+005 02 0  
+005 01 0  
+005 00 0 pa_boost
+006 15 0            
+006 14 1           
+006 13 1 DeviceID<5>           
+006 12 0 DeviceID<4>           
+006 11 1 DeviceID<3>          
+006 10 0 DeviceID<2>           
+006 09 0 DeviceID<1>           
+006 08 1 DeviceID<0>           
+006 07 0 
+006 06 0 
+006 05 0 
+006 04 0 
+006 03 0 
+006 02 0 pa_pwr<2> 
+006 01 0 pa_pwr<1> 
+006 00 0 pa_pwr<0>
+007 15 0            
+007 14 1           
+007 13 1 DeviceID<5>           
+007 12 0 DeviceID<4>           
+007 11 1 DeviceID<3>          
+007 10 0 DeviceID<2>           
+007 09 0 DeviceID<1>           
+007 08 1 DeviceID<0>           
+007 07 0 
+007 06 0 
+007 05 0 
+007 04 0 pacap<4>
+007 03 0 pacap<3>
+007 02 0 pacap<2> 
+007 01 0 pacap<1> 
+007 00 0 pacap<0>
+008 15 0            
+008 14 1           
+008 13 1 DeviceID<5>           
+008 12 0 DeviceID<4>           
+008 11 1 DeviceID<3>          
+008 10 0 DeviceID<2>           
+008 09 0 DeviceID<1>           
+008 08 1 DeviceID<0>           
+008 07 0 cplin<1>
+008 06 0 cplin<0>
+008 05 0 frac-mode 
+008 04 0  
+008 03 0 
+008 02 0 lodiv<1> 
+008 01 0 lodiv<0> 
+008 00 0 lomode
+009 15 0            
+009 14 1           
+009 13 1 DeviceID<5>           
+009 12 0 DeviceID<4>           
+009 11 1 DeviceID<3>          
+009 10 0 DeviceID<2>           
+009 09 0 DeviceID<1>           
+009 08 1 DeviceID<0>           
+009 07 0 
+009 06 0 
+009 05 0 
+009 04 0  
+009 03 0  
+009 02 0  
+009 01 0 cpval<1> 
+009 00 0 cpval<0>
+010 15 0            
+010 14 1           
+010 13 1 DeviceID<5>           
+010 12 0 DeviceID<4>           
+010 11 1 DeviceID<3>          
+010 10 0 DeviceID<2>           
+010 09 0 DeviceID<1>           
+010 08 1 DeviceID<0>           
+010 07 0 
+010 06 0 
+010 05 0 
+010 04 0  
+010 03 0  
+010 02 0 i2c_txen1 
+010 01 0   
+010 00 0  
+011 15 0            
+011 14 1           
+011 13 1 DeviceID<5>           
+011 12 0 DeviceID<4>           
+011 11 1 DeviceID<3>          
+011 10 0 DeviceID<2>           
+011 09 0 DeviceID<1>           
+011 08 1 DeviceID<0>           
+011 07 0 freq<23>
+011 06 0 freq<22>
+011 05 0 freq<21>
+011 04 0 freq<20>
+011 03 0 freq<19>
+011 02 0 freq<18>
+011 01 0 freq<17>
+011 00 0 freq<16>
+012 15 0            
+012 14 1           
+012 13 1 DeviceID<5>           
+012 12 0 DeviceID<4>           
+012 11 1 DeviceID<3>          
+012 10 0 DeviceID<2>           
+012 09 0 DeviceID<1>           
+012 08 1 DeviceID<0>           
+012 07 0 freq<15>
+012 06 0 freq<14>
+012 05 0 freq<13>
+012 04 0 freq<12>
+012 03 0 freq<11>
+012 02 0 freq<10>
+012 01 0 freq<9>
+012 00 0 freq<8>
+013 15 0            
+013 14 1           
+013 13 1 DeviceID<5>           
+013 12 0 DeviceID<4>           
+013 11 1 DeviceID<3>          
+013 10 0 DeviceID<2>           
+013 09 0 DeviceID<1>           
+013 08 1 DeviceID<0>           
+013 07 0 freq<7>
+013 06 0 freq<6>
+013 05 0 freq<5>
+013 04 0 freq<4>
+013 03 0 freq<3>
+013 02 0 freq<2>
+013 01 0 freq<1>
+013 00 0 freq<0>
+014 15 0            
+014 14 1           
+014 13 1 DeviceID<5>           
+014 12 0 DeviceID<4>           
+014 11 1 DeviceID<3>          
+014 10 0 DeviceID<2>           
+014 09 0 DeviceID<1>           
+014 08 1 DeviceID<0>           
+014 07 0 
+014 06 0 delta_f<6>
+014 05 0 delta_f<5>
+014 04 0 delta_f<4>
+014 03 0 delta_f<3>
+014 02 0 delta_f<2>
+014 01 0 delta_f<1>
+014 00 0 delta_f<0>
+015 15 0            
+015 14 1           
+015 13 1 DeviceID<5>           
+015 12 0 DeviceID<4>           
+015 11 1 DeviceID<3>          
+015 10 0 DeviceID<2>           
+015 09 0 DeviceID<1>           
+015 08 1 DeviceID<0>           
+015 07 0 
+015 06 0 
+015 05 0 
+015 04 0 
+015 03 0 delta_f_sp<3>
+015 02 0 delta_f_sp<2>
+015 01 0 delta_f_sp<1>
+015 00 0 delta_f_sp<0>
+016 15 0            
+016 14 1           
+016 13 1 DeviceID<5>           
+016 12 0 DeviceID<4>           
+016 11 1 DeviceID<3>          
+016 10 0 DeviceID<2>           
+016 09 0 DeviceID<1>           
+016 08 1 DeviceID<0>           
+016 07 0 
+016 06 0 
+016 05 0 
+016 04 0  
+016 03 0  
+016 02 0 i2c_txen2 
+016 01 0   
+016 00 0 
+019 15 0            
+019 14 1           
+019 13 1 DeviceID<5>           
+019 12 0 DeviceID<4>           
+019 11 1 DeviceID<3>          
+019 10 0 DeviceID<2>           
+019 09 0 DeviceID<1>           
+019 08 1 DeviceID<0>           
+019 07 0 i2c_tx_data<7>
+019 06 0 i2c_tx_data<6>
+019 05 0 i2c_tx_data<5>
+019 04 0 i2c_tx_data<4>
+019 03 0 i2c_tx_data<3>
+019 02 0 i2c_tx_data<2>
+019 01 0 i2c_tx_data<1>
+019 00 0 i2c_tx_data<0>
+022 15 0            
+022 14 1           
+022 13 1 DeviceID<5>           
+022 12 0 DeviceID<4>           
+022 11 1 DeviceID<3>          
+022 10 0 DeviceID<2>           
+022 09 0 DeviceID<1>           
+022 08 1 DeviceID<0>           
+022 07 0 uflow
+022 06 0 oflow
+022 05 0 fifo-empty
+022 04 0 fifo-full
+022 03 0  
+022 02 0 fifo_word<2>
+022 01 0 fifo_word<1>
+022 00 0 fifo_word<0>
+023 15 0            
+023 14 1           
+023 13 1 DeviceID<5>           
+023 12 0 DeviceID<4>           
+023 11 1 DeviceID<3>          
+023 10 0 DeviceID<2>           
+023 09 0 DeviceID<1>           
+023 08 1 DeviceID<0>           
+023 07 0  
+023 06 0  
+023 05 0  
+023 04 0  
+023 03 0  
+023 02 0  
+023 01 0  
+023 00 0 softreset 

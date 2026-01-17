@@ -1488,30 +1488,24 @@ void __fastcall TForm1::Button1606Click(TObject *Sender)
      //----------------------------------------//
      pUART2->Openport2(6) ;
 
-     int p1,p2,p3,p4,p1x,p2x,p3x,p4x,adc,step=1, max_p=0; int px;
-     for (p1=0; p1<10; p1++){
+     int p1,p2,p3,p4,adc,step=10, max_p=0; int px;
+     for (p1=0; p1<18; p1++){
         pUART->register_write(165,0x6000|(p1*step));
         Edit5->Text = p1* step;
         Edit5->Update()  ;
-        for(p2=0;p2<10;p2++){
+        for(p2=0;p2<18;p2++){
                 pUART->register_write(166,0x6000|(p2*step));
                 Edit12->Text = p2* step;
                 Edit12->Update()  ;
-                for (p3=0;p3<10;p3++){
+                for (p3=0;p3<18;p3++){
                         pUART->register_write(167,0x6000|(p3*step));
                         Edit13->Text = p3* step;
                         Edit13->Update()  ;
-                        for (p4=0;p4<10;p4++){
+                        for (p4=0;p4<18;p4++){
                                  pUART->register_write(168,0x6000|(p4*step));
                                  pUART2->register_read2(0x8022, read_data) >> 8;
                                  adc=read_data[2]*256 + read_data[3] ;
-                                 if (adc>max_p) {
-                                        p1x=p1;
-                                        p2x=p2;
-                                        p3x=p3;
-                                        p4x=p4;
-                                        max_p = adc;
-                                 }
+                                 if (adc>max_p) max_p = adc;
                                  px = 25*(p1/18+p2/18+p3/18+p4/18) ;
                                  ProgressBar2->Position = px;
                                  Edit2->Text = max_p*10000 + adc;

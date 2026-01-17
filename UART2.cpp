@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <io.h>
 #pragma hdrstop
-#include "UART.h"
+#include "UART2.h"
 
-HANDLE m_hCommPort;
+HANDLE m_hCommPort2;
 DCB config = {0};
-    int com=1;
+    int com=6;
     bool abContinue = true;
     int isRead = false;
     int rxdata[16];
@@ -14,8 +14,8 @@ DCB config = {0};
     int addrbit[16];
     int yyy[33];
     short int send_flag=0x0053  ;
-    BYTE buf[10] = {0x53, 0x80, 0x20, 0x31, 0x0D};
-    BYTE rx_buf[6] = {0};
+    BYTE buf2[10] = {0x53, 0x80, 0x20, 0x31, 0x0D};
+    BYTE rx_buf2[6] = {0};
 //------------------------------------------------------------------------------
 unsigned char HexToInt (char ch)
 {
@@ -28,7 +28,7 @@ unsigned char HexToInt (char ch)
 //------------------------------------------------------------------------------
 
 
-int UART::send(unsigned char len)
+int UART2::send2(unsigned char len)
 {
     DWORD dwBytesWritten=5;
     COMMTIMEOUTS timeouts;
@@ -36,7 +36,7 @@ int UART::send(unsigned char len)
     DWORD written;
    int xx;
 
-    if (!SetCommState(m_hCommPort, &config))
+    if (!SetCommState(m_hCommPort2, &config))
     {
 
         printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -44,23 +44,23 @@ int UART::send(unsigned char len)
     }
       //  int isWritten =
 //        WriteFile(m_hCommPort, &data,(DWORD) sizeof(data), &dwBytesWritten, NULL);
-        WriteFile(m_hCommPort, buf, len, &dwBytesWritten, NULL);
+        WriteFile(m_hCommPort2, buf2, len, &dwBytesWritten, NULL);
 
    return xx ;
 }
 
-bool UART::send_and_receive(unsigned char len)
+bool UART2::send_and_receive2(unsigned char len)
 {
         DWORD dwBytesWritten=2;
         COMMTIMEOUTS timeouts;
 
-        if (!SetCommState(m_hCommPort, &config))
+        if (!SetCommState(m_hCommPort2, &config))
         {
 
                 printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
         }
         //       WriteFile(m_hCommPort, &data,(DWORD) sizeof(data), &dwBytesWritten, NULL);
-        WriteFile(m_hCommPort, buf, len, &dwBytesWritten, NULL);
+        WriteFile(m_hCommPort2, buf2, len, &dwBytesWritten, NULL);
 
         // set short timeouts on the comm port.
          timeouts.ReadIntervalTimeout = 1;
@@ -69,7 +69,7 @@ bool UART::send_and_receive(unsigned char len)
          timeouts.WriteTotalTimeoutMultiplier = 1;
          timeouts.WriteTotalTimeoutConstant = 1;
 
-         if (!SetCommTimeouts(m_hCommPort, &timeouts))
+         if (!SetCommTimeouts(m_hCommPort2, &timeouts))
          //system_error("setting port time-outs.");
           {
            printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -79,7 +79,7 @@ bool UART::send_and_receive(unsigned char len)
         DWORD total_read = 0;
         BOOL success   ;
         DWORD bytes_this_time = 0;
-        success = ReadFile(m_hCommPort,rx_buf,6,&bytes_this_time,NULL);
+        success = ReadFile(m_hCommPort2,rx_buf2,6,&bytes_this_time,NULL);
         /*
         while (total_read < 6)
         {
@@ -99,7 +99,7 @@ bool UART::send_and_receive(unsigned char len)
 
 //---------------------------------------------------------------------------
 
-int UART::Closeport(int com)
+int UART2::Closeport2(int com)
 {
         char * ComX="COM1";
         if(com==2) ComX="COM2";
@@ -112,7 +112,7 @@ int UART::Closeport(int com)
         else if (com==9) ComX="COM9";
         else if(com==10) ComX="COM10";
 
-        m_hCommPort = ::CreateFile(ComX,
+        m_hCommPort2 = ::CreateFile(ComX,
         GENERIC_READ|GENERIC_WRITE,//access ( read and write)
 
         0,    //(share) 0:cannot share the COM port
@@ -128,13 +128,13 @@ int UART::Closeport(int com)
         );
 
     config.DCBlength = sizeof(config);
-    CloseHandle(m_hCommPort)  ;
+    CloseHandle(m_hCommPort2)  ;
     return 0;
 }
 //---------------------------------------------------------------------------
 
 
-int UART::Openport(int com)
+int UART2::Openport2(int com)
 {
         char * ComX="COM1";
         if(com==2) ComX="COM2";
@@ -147,7 +147,7 @@ int UART::Openport(int com)
         else if (com==9) ComX="COM9";
         else if(com==10) ComX="COM10";
 
-        m_hCommPort = ::CreateFile(ComX,
+        m_hCommPort2 = ::CreateFile(ComX,
         GENERIC_READ|GENERIC_WRITE,//access ( read and write)
 
         0,    //(share) 0:cannot share the COM port
@@ -165,7 +165,7 @@ int UART::Openport(int com)
     config.DCBlength = sizeof(config);
 
 
-    if((GetCommState(m_hCommPort, &config) == 0))
+    if((GetCommState(m_hCommPort2, &config) == 0))
     {
         printf("Get configuration port has a problem.");
         return 0;
@@ -179,7 +179,7 @@ int UART::Openport(int com)
     config.fDtrControl = 0;
     config.fRtsControl = 0;
 
-    if (!SetCommState(m_hCommPort, &config))
+    if (!SetCommState(m_hCommPort2, &config))
     {
 
      //   printf( "Failed to Set Comm State Reason: %d\n",GetLastError());
@@ -195,40 +195,39 @@ int UART::Openport(int com)
 //---------------------------------------------------------------------------
 
 
-
-void UART::register_write(int address,int data)
+void UART2::register_write2(int address,int data)
 {
 
       unsigned char sa;
       sa =  (data & 0xff00) >>8  ;
       data = data & 0xff ;
-      buf[0] = 0x53; //{0x53,sa,address,data,0xd}   ;
-      buf[1] = sa;
-      buf[2] = address;
-      buf[3] = data;
-      buf[4] = 0xd;
-      send(5);
+      buf2[0] = 0x53; //{0x53,sa,address,data,0xd}   ;
+      buf2[1] = sa;
+      buf2[2] = address;
+      buf2[3] = data;
+      buf2[4] = 0xd;
+      send2(5);
 
 }
 //---------------------------------------------------------------------------
 
-bool UART::register_read(int address, BYTE data[])
+bool UART2::register_read2(int address, BYTE data[])
 {
       unsigned char sa;
       sa = (address & 0xff00) >>8;
       address = address;
-      buf[0] = 0x52;
-      buf[1] = sa;
-      buf[2] = address;
-      buf[3] = 0x30;
-      buf[4] = 0xd;
-      bool good = send_and_receive (5);
-      data[0] = rx_buf[0];
-      data[1] = rx_buf[1];
-      data[2] = rx_buf[2];
-      data[3] = rx_buf[3];
-      data[4] = rx_buf[4];
-      data[5] = rx_buf[5];
+      buf2[0] = 0x52;
+      buf2[1] = sa;
+      buf2[2] = address;
+      buf2[3] = 0x30;
+      buf2[4] = 0xd;
+      bool good = send_and_receive2 (5);
+      data[0] = rx_buf2[0];
+      data[1] = rx_buf2[1];
+      data[2] = rx_buf2[2];
+      data[3] = rx_buf2[3];
+      data[4] = rx_buf2[4];
+      data[5] = rx_buf2[5];
 
      return good;
 

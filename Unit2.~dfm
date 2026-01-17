@@ -118,8 +118,8 @@ object Form1: TForm1
     Top = 0
     Width = 1350
     Height = 609
-    ActivePage = TabSheet5
-    TabIndex = 4
+    ActivePage = TabSheet6
+    TabIndex = 5
     TabOrder = 1
     OnChange = PageControl1Change
     object TabSheet1: TTabSheet

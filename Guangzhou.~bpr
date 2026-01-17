@@ -4,7 +4,7 @@
   <MACROS>
     <VERSION value="BCB.06.00"/>
     <PROJECT value="Guangzhou.exe"/>
-    <OBJFILES value="Guangzhou.obj rffe_master.obj Unit2.obj UART.obj UART2.obj"/>
+    <OBJFILES value="Guangzhou.obj rffe_master.obj Unit2.obj UART.obj"/>
     <RESFILES value="Guangzhou.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Unit2.dfm"/>
@@ -53,7 +53,6 @@
       <FILE FILENAME="rffe_master.cpp" FORMNAME="" UNITNAME="rffe_master" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Unit2.cpp" FORMNAME="Form1" UNITNAME="Unit2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="UART.cpp" FORMNAME="" UNITNAME="UART" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
-      <FILE FILENAME="UART2.cpp" FORMNAME="" UNITNAME="UART2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>
